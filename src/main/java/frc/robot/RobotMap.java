@@ -7,6 +7,8 @@
 
 package frc.robot;
 
+import com.sun.tools.classfile.StackMapTable_attribute.stack_map_frame;
+
 /**
  * The RobotMap is a mapping from the ports sensors and actuators are wired into
  * to a variable name. This provides flexibility changing wiring, makes checking
@@ -18,6 +20,12 @@ public class RobotMap {
   // following variables to use with your drivetrain subsystem.
   // public static int leftMotor = 1;
   // public static int rightMotor = 2;
+
+  public static int frontLeftMotor;   //probably isn't actually going to be an integer. Look into WPI_TalonSRX data type. Might need to import it
+  public static int frontRightMotor;  //Also, need to set each speed controller to their given id's
+  public static int backLeftMotor;
+  public static int backRightMotor;
+
 
   // If you are using multiple modules, make sure to define both the port
   // number and the module. For example you with a rangefinder:
