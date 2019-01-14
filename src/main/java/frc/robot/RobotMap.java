@@ -23,6 +23,8 @@ public class RobotMap {
 
   public static int frontLeftMotor;   //probably isn't actually going to be an integer. Look into WPI_TalonSRX data type. Might need to import it
   public static int frontRightMotor;  //Also, need to set each speed controller to their given id's
+  public static int middleLeftMotor;
+  public static int middleRightMotor;
   public static int backLeftMotor;
   public static int backRightMotor;
 
