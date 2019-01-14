@@ -7,7 +7,9 @@
 
 package frc.robot;
 
-import com.sun.tools.classfile.StackMapTable_attribute.stack_map_frame;
+import edu.wpi.first.wpilibj.drive.DifferentialDrive;
+
+//import com.sun.tools.classfile.StackMapTable_attribute.stack_map_frame;
 
 /**
  * The RobotMap is a mapping from the ports sensors and actuators are wired into
@@ -27,6 +29,8 @@ public class RobotMap {
   public static int middleRightMotor;
   public static int backLeftMotor;
   public static int backRightMotor;
+
+  public static DifferentialDrive differentialDriveTrain;
 
 
   // If you are using multiple modules, make sure to define both the port

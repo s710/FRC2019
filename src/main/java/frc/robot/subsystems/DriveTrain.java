@@ -7,8 +7,10 @@
 
 package frc.robot.subsystems;
 
+import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import frc.robot.commands.DriveWithJoysticks;
+import frc.robot.RobotMap;
 
 /**
  * Add your docs here.
@@ -24,6 +26,13 @@ public class DriveTrain extends Subsystem {
     setDefaultCommand(new DriveWithJoysticks());
   }
 
-  
+  public void drive(double left, double right) {
+    RobotMap.differentialDriveTrain.tankDrive(left, right);
+  }
+
+  public void drive(Joystick joy){
+    drive(joy.getY(), joy.getThrottle());
+
+  }
 
 }
