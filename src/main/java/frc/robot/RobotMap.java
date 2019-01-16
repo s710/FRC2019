@@ -26,7 +26,7 @@ public class RobotMap {
   // public static int rightMotor = 2;
 
   private static WPI_TalonSRX frontLeftMotor;   
-  private static WPI_TalonSRX frontRightMotor;  //Also, need to set each speed controller to their given id's
+  private static WPI_TalonSRX frontRightMotor;  //Need to set each speed controller to their given id's
   private static WPI_TalonSRX middleLeftMotor;
   private static WPI_TalonSRX middleRightMotor;
   private static WPI_TalonSRX backLeftMotor;
