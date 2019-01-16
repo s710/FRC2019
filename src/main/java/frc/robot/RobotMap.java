@@ -8,7 +8,7 @@
 package frc.robot;
 
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
-//import com.ctre.phoenix.motorcontrol.*;
+import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 
 //import com.sun.tools.classfile.StackMapTable_attribute.stack_map_frame;
 
@@ -24,12 +24,12 @@ public class RobotMap {
   // public static int leftMotor = 1;
   // public static int rightMotor = 2;
 
-  public static int frontLeftMotor;   //probably isn't actually going to be an integer. Look into WPI_TalonSRX data type. Might need to import it
-  public static int frontRightMotor;  //Also, need to set each speed controller to their given id's
-  public static int middleLeftMotor;
-  public static int middleRightMotor;
-  public static int backLeftMotor;
-  public static int backRightMotor;
+  public static TalonSRX frontLeftMotor;   
+  public static TalonSRX frontRightMotor;  //Also, need to set each speed controller to their given id's
+  public static TalonSRX middleLeftMotor;
+  public static TalonSRX middleRightMotor;
+  public static TalonSRX backLeftMotor;
+  public static TalonSRX backRightMotor;
 
   public static DifferentialDrive differentialDriveTrain;
 
