@@ -7,6 +7,7 @@
 
 package frc.robot;
 import edu.wpi.first.wpilibj.Joystick;
+import edu.wpi.first.wpilibj.buttons.JoystickButton;
 
 /**
  * This class is the glue that binds the controls on the physical operator
@@ -22,6 +23,21 @@ public class OI {
   // Button button = new JoystickButton(stick, buttonNumber);
 
   public Joystick joy = new Joystick(0);
+  
+  public JoystickButton x = new JoystickButton(joy, 1);
+  public JoystickButton a = new JoystickButton(joy, 2);
+  public JoystickButton b = new JoystickButton(joy, 3);
+  public JoystickButton y = new JoystickButton(joy, 4);
+  public JoystickButton lb = new JoystickButton(joy, 5);
+  public JoystickButton rb = new JoystickButton(joy, 6);
+  public JoystickButton lt = new JoystickButton(joy, 7);
+  public JoystickButton rt = new JoystickButton(joy, 8);
+  public JoystickButton back = new JoystickButton(joy, 9);
+  public JoystickButton start = new JoystickButton(joy, 10);
+
+  
+
+
 
   // There are a few additional built in buttons you can use. Additionally,
   // by subclassing Button you can create custom triggers and bind those to

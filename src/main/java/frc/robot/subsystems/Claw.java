@@ -24,4 +24,13 @@ public class Claw extends Subsystem {
     // Set the default command for a subsystem here.
     // setDefaultCommand(new MySpecialCommand());
   }
+
+
+  public void openClaw() {
+    //self-explanatory
+  }
+  public void closeClaw() {
+    //self-explanatory
+  }
+  
 }
