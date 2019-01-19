@@ -24,18 +24,25 @@ public class RobotMap {
   // following variables to use with your drivetrain subsystem.
   // public static int leftMotor = 1;
   // public static int rightMotor = 2;
+  
+  public static int frontLeftMotor = 6;
+  public static int frontRightMotor = 7;
+  public static int middleLeftMotor;//Waiting for IDs
+  public static int middleRightMotor;//Waiting for IDs
+  public static int backLeftMotor = 2;
+  public static int backRightMotor = 4;
 
-  private static WPI_TalonSRX frontLeftMotor = new WPI_TalonSRX(6);   
-  private static WPI_TalonSRX frontRightMotor = new WPI_TalonSRX(7);  //Need to set each speed controller to their given id's
-  private static WPI_TalonSRX middleLeftMotor;
-  private static WPI_TalonSRX middleRightMotor;
-  private static WPI_TalonSRX backLeftMotor = new WPI_TalonSRX(2);
-  private static WPI_TalonSRX backRightMotor = new WPI_TalonSRX(4);;
+  // private static WPI_TalonSRX frontLeftMotor = new WPI_TalonSRX(6);   
+  // private static WPI_TalonSRX frontRightMotor = new WPI_TalonSRX(7);
+  // private static WPI_TalonSRX middleLeftMotor;
+  // private static WPI_TalonSRX middleRightMotor;
+  // private static WPI_TalonSRX backLeftMotor = new WPI_TalonSRX(2);
+  // private static WPI_TalonSRX backRightMotor = new WPI_TalonSRX(4);;
 
-  private static SpeedControllerGroup leftMotors = new SpeedControllerGroup(frontLeftMotor, middleLeftMotor, backLeftMotor);
-  private static SpeedControllerGroup rightMotors = new SpeedControllerGroup(frontRightMotor, middleRightMotor, backRightMotor);
+  // private static SpeedControllerGroup leftMotors = new SpeedControllerGroup(frontLeftMotor, middleLeftMotor, backLeftMotor);
+  // private static SpeedControllerGroup rightMotors = new SpeedControllerGroup(frontRightMotor, middleRightMotor, backRightMotor);
 
-  public static DifferentialDrive differentialDriveTrain = new DifferentialDrive(leftMotors, rightMotors);
+  // public static DifferentialDrive differentialDriveTrain = new DifferentialDrive(leftMotors, rightMotors);
 
 
   // If you are using multiple modules, make sure to define both the port

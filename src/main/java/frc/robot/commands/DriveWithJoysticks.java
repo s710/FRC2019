@@ -19,6 +19,7 @@ public class DriveWithJoysticks extends Command {
   // Called just before this Command runs the first time
   @Override
   protected void initialize() {
+    System.out.println("About to drive with joysticks command");
   }
 
   // Called repeatedly when this Command is scheduled to run

@@ -38,6 +38,7 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void robotInit() {
+    System.out.println("Initializing");
     m_oi = new OI();
     m_chooser.setDefaultOption("Default Auto", new ExampleCommand());
     // chooser.addOption("My Auto", new MyAutoCommand());
@@ -54,6 +55,7 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void robotPeriodic() {
+    System.out.println("Periodic");
   }
 
   /**

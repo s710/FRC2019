@@ -11,6 +11,9 @@ import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import frc.robot.commands.DriveWithJoysticks;
 import frc.robot.RobotMap;
+import edu.wpi.first.wpilibj.drive.DifferentialDrive;
+import edu.wpi.first.wpilibj.SpeedControllerGroup;
+import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 
 /**
  * Add your docs here.
@@ -18,6 +21,19 @@ import frc.robot.RobotMap;
 public class DriveTrain extends Subsystem {
   // Put methods for controlling this subsystem
   // here. Call these from Commands.
+
+  private static WPI_TalonSRX frontLeftMotor = new WPI_TalonSRX(RobotMap.frontLeftMotor);   
+  private static WPI_TalonSRX frontRightMotor = new WPI_TalonSRX(RobotMap.frontRightMotor);
+  private static WPI_TalonSRX middleLeftMotor;
+  private static WPI_TalonSRX middleRightMotor;
+  private static WPI_TalonSRX backLeftMotor = new WPI_TalonSRX(RobotMap.frontLeftMotor);
+  private static WPI_TalonSRX backRightMotor = new WPI_TalonSRX(RobotMap.backRightMotor);;
+
+  private static SpeedControllerGroup leftMotors = new SpeedControllerGroup(frontLeftMotor,/* middleLeftMotor,*/ backLeftMotor);
+  private static SpeedControllerGroup rightMotors = new SpeedControllerGroup(frontRightMotor,/* middleRightMotor,*/ backRightMotor);
+
+  public static DifferentialDrive differentialDriveTrain = new DifferentialDrive(leftMotors, rightMotors);
+
 
   @Override
   public void initDefaultCommand() {
@@ -27,11 +43,13 @@ public class DriveTrain extends Subsystem {
   }
 
   public void drive(double left, double right) {
-    RobotMap.differentialDriveTrain.tankDrive(left, right);
+    System.out.println("drive(double left, double right) reached");
+    differentialDriveTrain.tankDrive(left, right);
   }
 
   public void drive(Joystick joy){
-    drive(joy.getY(), joy.getThrottle());
+    System.out.println("Drive(Joystick) reached");
+    drive(-joy.getY(), -joy.getThrottle());
   }
 
 }
