@@ -32,7 +32,7 @@ public class DriveTrain extends Subsystem {
   private static SpeedControllerGroup leftMotors = new SpeedControllerGroup(frontLeftMotor,/* middleLeftMotor,*/ backLeftMotor);
   private static SpeedControllerGroup rightMotors = new SpeedControllerGroup(frontRightMotor,/* middleRightMotor,*/ backRightMotor);
 
-  public static DifferentialDrive differentialDriveTrain = new DifferentialDrive(leftMotors, rightMotors);
+  private static DifferentialDrive differentialDriveTrain = new DifferentialDrive(leftMotors, rightMotors);
 
 
   @Override
