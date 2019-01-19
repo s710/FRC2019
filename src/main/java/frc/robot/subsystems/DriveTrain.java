@@ -24,10 +24,10 @@ public class DriveTrain extends Subsystem {
 
   private static WPI_TalonSRX frontLeftMotor = new WPI_TalonSRX(RobotMap.frontLeftMotor);   
   private static WPI_TalonSRX frontRightMotor = new WPI_TalonSRX(RobotMap.frontRightMotor);
-  private static WPI_TalonSRX middleLeftMotor = new WPI_TalonSRX(RobotMap.middleLeftMotor);//Need set IDs in RobotMap
-  private static WPI_TalonSRX middleRightMotor = new WPI_TalonSRX(RobotMap.middleRightMotor);//Need set IDs in RobotMap
+  private static WPI_TalonSRX middleLeftMotor = new WPI_TalonSRX(RobotMap.middleLeftMotor);//Need to set IDs in RobotMap
+  private static WPI_TalonSRX middleRightMotor = new WPI_TalonSRX(RobotMap.middleRightMotor);//Need to set IDs in RobotMap
   private static WPI_TalonSRX backLeftMotor = new WPI_TalonSRX(RobotMap.frontLeftMotor);
-  private static WPI_TalonSRX backRightMotor = new WPI_TalonSRX(RobotMap.backRightMotor);;
+  private static WPI_TalonSRX backRightMotor = new WPI_TalonSRX(RobotMap.backRightMotor);
 
   private static SpeedControllerGroup leftMotors = new SpeedControllerGroup(frontLeftMotor,/* middleLeftMotor,*/ backLeftMotor);
   private static SpeedControllerGroup rightMotors = new SpeedControllerGroup(frontRightMotor,/* middleRightMotor,*/ backRightMotor);
