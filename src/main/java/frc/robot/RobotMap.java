@@ -25,12 +25,12 @@ public class RobotMap {
   // public static int leftMotor = 1;
   // public static int rightMotor = 2;
 
-  private static WPI_TalonSRX frontLeftMotor;   
-  private static WPI_TalonSRX frontRightMotor;  //Need to set each speed controller to their given id's
+  private static WPI_TalonSRX frontLeftMotor = new WPI_TalonSRX(6);   
+  private static WPI_TalonSRX frontRightMotor = new WPI_TalonSRX(7);  //Need to set each speed controller to their given id's
   private static WPI_TalonSRX middleLeftMotor;
   private static WPI_TalonSRX middleRightMotor;
-  private static WPI_TalonSRX backLeftMotor;
-  private static WPI_TalonSRX backRightMotor;
+  private static WPI_TalonSRX backLeftMotor = new WPI_TalonSRX(2);
+  private static WPI_TalonSRX backRightMotor = new WPI_TalonSRX(4);;
 
   private static SpeedControllerGroup leftMotors = new SpeedControllerGroup(frontLeftMotor, middleLeftMotor, backLeftMotor);
   private static SpeedControllerGroup rightMotors = new SpeedControllerGroup(frontRightMotor, middleRightMotor, backRightMotor);
