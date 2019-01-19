@@ -7,10 +7,11 @@
 
 package frc.robot.subsystems;
 
-import edu.wpi.first.wpilibj.Joystick;
+//import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import frc.robot.commands.DriveWithJoysticks;
 import frc.robot.RobotMap;
+import edu.wpi.first.wpilibj.*;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import edu.wpi.first.wpilibj.SpeedControllerGroup;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
@@ -33,6 +34,13 @@ public class DriveTrain extends Subsystem {
   private static SpeedControllerGroup rightMotors = new SpeedControllerGroup(frontRightMotor,/* middleRightMotor,*/ backRightMotor);
 
   private static DifferentialDrive differentialDriveTrain = new DifferentialDrive(leftMotors, rightMotors);
+
+
+  //Pneumatics will be used in the drivetrain. The following is where that is:
+  private static DoubleSolenoid first;
+  private static DoubleSolenoid second;
+  private static DoubleSolenoid third;
+  private static DoubleSolenoid fourth;//Not sure how many we need
 
 
   @Override
