@@ -35,9 +35,6 @@ public class OI {
   public JoystickButton back = new JoystickButton(joy, 9);
   public JoystickButton start = new JoystickButton(joy, 10);
 
-  
-
-
 
   // There are a few additional built in buttons you can use. Additionally,
   // by subclassing Button you can create custom triggers and bind those to
