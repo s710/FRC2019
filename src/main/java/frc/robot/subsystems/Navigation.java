@@ -20,7 +20,7 @@ public class Navigation extends Subsystem {
 
   private AHRS ahrs;
 
-  public Navigation() {
+  public Navigation() {   //Constructor
     super();
     try {
       /* Communicate w/navX-MXP via the MXP SPI Bus.                                     */
@@ -37,6 +37,7 @@ public class Navigation extends Subsystem {
   public void initDefaultCommand() {
     // Set the default command for a subsystem here.
     // setDefaultCommand(new MySpecialCommand());
+    //Probably never gonna use
   }
 
   public void getAngle(){
