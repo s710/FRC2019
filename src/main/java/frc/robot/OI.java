@@ -8,6 +8,7 @@
 package frc.robot;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
+import frc.robot.commands.*;
 
 /**
  * This class is the glue that binds the controls on the physical operator
@@ -35,7 +36,9 @@ public class OI {
   public JoystickButton back = new JoystickButton(joy, 9);
   public JoystickButton start = new JoystickButton(joy, 10);
 
-
+  public OI(){
+    a.whileHeld(new OpenSimplePneumatic());
+  }
   // There are a few additional built in buttons you can use. Additionally,
   // by subclassing Button you can create custom triggers and bind those to
   // commands the same as any other Button.
