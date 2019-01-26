@@ -14,6 +14,7 @@ public class CloseSimplePneumatic extends Command {
   public CloseSimplePneumatic() {
     // Use requires() here to declare subsystem dependencies
     // eg. requires(chassis);
+    requires(Robot.m_simplePneumatics);
   }
 
   // Called just before this Command runs the first time
