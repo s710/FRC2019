@@ -27,8 +27,8 @@ public class RobotMap {
   
   public static int frontLeftMotor = 4;
   public static int frontRightMotor = 2;
-  public static int middleLeftMotor;//Waiting for IDs
-  public static int middleRightMotor;//Waiting for IDs
-  public static int backLeftMotor = 7;
-  public static int backRightMotor = 6;
+  public static int middleLeftMotor = 11;
+  public static int middleRightMotor = 10;
+  public static int backLeftMotor = 6;
+  public static int backRightMotor = 7;
 }

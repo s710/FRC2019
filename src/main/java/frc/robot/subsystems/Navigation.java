@@ -21,7 +21,7 @@ public class Navigation extends Subsystem {
   private AHRS ahrs;
 
   public Navigation() {   //Constructor
-    super();
+    super(); // super class
     try {
       /* Communicate w/navX-MXP via the MXP SPI Bus.                                     */
       /* Alternatively:  I2C.Port.kMXP, SerialPort.Port.kMXP or SerialPort.Port.kUSB     */

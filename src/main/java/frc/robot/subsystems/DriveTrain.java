@@ -25,13 +25,13 @@ public class DriveTrain extends Subsystem {
 
   private static WPI_TalonSRX frontLeftMotor = new WPI_TalonSRX(RobotMap.frontLeftMotor);   
   private static WPI_TalonSRX frontRightMotor = new WPI_TalonSRX(RobotMap.frontRightMotor);
-  //private static WPI_TalonSRX middleLeftMotor = new WPI_TalonSRX(RobotMap.middleLeftMotor);//Need to set IDs in RobotMap
-  //private static WPI_TalonSRX middleRightMotor = new WPI_TalonSRX(RobotMap.middleRightMotor);//Need to set IDs in RobotMap
+  private static WPI_TalonSRX middleLeftMotor = new WPI_TalonSRX(RobotMap.middleLeftMotor);
+  private static WPI_TalonSRX middleRightMotor = new WPI_TalonSRX(RobotMap.middleRightMotor);
   private static WPI_TalonSRX backLeftMotor = new WPI_TalonSRX(RobotMap.backLeftMotor);
   private static WPI_TalonSRX backRightMotor = new WPI_TalonSRX(RobotMap.backRightMotor);
 
-  private static SpeedControllerGroup leftMotors = new SpeedControllerGroup(frontLeftMotor,/* middleLeftMotor,*/ backLeftMotor);
-  private static SpeedControllerGroup rightMotors = new SpeedControllerGroup(frontRightMotor,/* middleRightMotor,*/ backRightMotor);
+  private static SpeedControllerGroup leftMotors = new SpeedControllerGroup(frontLeftMotor, middleLeftMotor, backLeftMotor);
+  private static SpeedControllerGroup rightMotors = new SpeedControllerGroup(frontRightMotor, middleRightMotor, backRightMotor);
 
   private static DifferentialDrive differentialDriveTrain = new DifferentialDrive(leftMotors, rightMotors);
 
@@ -47,7 +47,7 @@ public class DriveTrain extends Subsystem {
   public void initDefaultCommand() {
     // Set the default command for a subsystem here.
     // setDefaultCommand(new MySpecialCommand());
-    setDefaultCommand(new DriveWithJoysticks());
+    setDefaultCommand(new DriveWithJoysticks()); //needs the DriveWithJoysticks command to work
   }
 
   public void drive(double left, double right) {
@@ -58,7 +58,7 @@ public class DriveTrain extends Subsystem {
 
 
 
-  public void drive(Joystick joy){
+  public void drive(Joystick joy){ 
     System.out.println(-joy.getY() + " " + -joy.getThrottle());
     drive(-joy.getY(), -joy.getThrottle());
   }
