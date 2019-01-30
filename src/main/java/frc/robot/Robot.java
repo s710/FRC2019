@@ -12,6 +12,11 @@ import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import edu.wpi.first.wpilibj.CameraServer;
+import edu.wpi.first.networktables.NetworkTable;
+import edu.wpi.first.networktables.NetworkTableInstance;
+import edu.wpi.first.networktables.NetworkTableEntry;
+
 //import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 import frc.robot.commands.ExampleCommand;
 import frc.robot.subsystems.DriveTrain;
@@ -30,6 +35,8 @@ public class Robot extends TimedRobot {
   public static DriveTrain m_driveTrain = new DriveTrain();
   public static SimplePneumatics m_simplePneumatics = new SimplePneumatics();
   public static OI m_oi;
+
+  private NetworkTable table;
   
 
   Command m_autonomousCommand;
@@ -43,6 +50,16 @@ public class Robot extends TimedRobot {
   public void robotInit() {
     System.out.println("Initializing");
     m_oi = new OI();
+
+    CameraServer.getInstance().startAutomaticCapture();
+
+		try {
+			table = NetworkTableInstance.getDefault().getTable("limelight"); 
+		}
+		catch (RuntimeException ex) {
+			System.out.print("Limelight errored (line 60, Robot)");
+		}
+
     m_chooser.setDefaultOption("Default Auto", new ExampleCommand());
     // chooser.addOption("My Auto", new MyAutoCommand());
     SmartDashboard.putData("Auto mode", m_chooser);
