@@ -7,9 +7,6 @@
 
 package frc.robot;
 
-import edu.wpi.first.wpilibj.drive.DifferentialDrive;
-import edu.wpi.first.wpilibj.SpeedControllerGroup;
-import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 
 //import com.sun.tools.classfile.StackMapTable_attribute.stack_map_frame;
 
@@ -20,10 +17,6 @@ import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
  * floating around.
  */
 public class RobotMap {
-  // For example to map the left and right motors, you could define the
-  // following variables to use with your drivetrain subsystem.
-  // public static int leftMotor = 1;
-  // public static int rightMotor = 2;
   
   public static int frontLeftMotor = 4;
   public static int frontRightMotor = 2;
@@ -31,4 +24,5 @@ public class RobotMap {
   public static int middleRightMotor = 10;
   public static int backLeftMotor = 6;
   public static int backRightMotor = 7;
+
 }
