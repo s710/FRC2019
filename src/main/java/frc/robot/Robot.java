@@ -37,6 +37,7 @@ public class Robot extends TimedRobot {
   public static OI m_oi;
 
   private NetworkTable table;
+  private NetworkTableInstance inst;
   
 
   Command m_autonomousCommand;
@@ -51,14 +52,18 @@ public class Robot extends TimedRobot {
     System.out.println("Initializing");
     m_oi = new OI();
 
-    CameraServer.getInstance().startAutomaticCapture();
 
+    //CameraServer.getInstance().startAutomaticCapture();
+
+
+    inst = NetworkTableInstance.getDefault();
 		try {
-			table = NetworkTableInstance.getDefault().getTable("limelight"); 
+			table = inst.getTable("limelight"); 
 		}
 		catch (RuntimeException ex) {
 			System.out.print("Limelight errored (line 60, Robot)");
-		}
+    }
+    table.getEntry("camMode").setNumber(1);
 
     m_chooser.setDefaultOption("Default Auto", new ExampleCommand());
     // chooser.addOption("My Auto", new MyAutoCommand());
