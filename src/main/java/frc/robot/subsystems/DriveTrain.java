@@ -35,6 +35,7 @@ public class DriveTrain extends Subsystem {
 
   private static DifferentialDrive differentialDriveTrain = new DifferentialDrive(leftMotors, rightMotors);
 
+  private boolean driveTankMode = true;
 
   //Pneumatics will be used in the drivetrain. The following is where that is:
   private static DoubleSolenoid first;
@@ -50,23 +51,42 @@ public class DriveTrain extends Subsystem {
     setDefaultCommand(new DriveWithJoysticks()); //needs the DriveWithJoysticks command to work
   }
 
-  public void drive(double left, double right) {
+  public void driveTank(double left, double right) {
     System.out.println("drive(double left, double right) reached");
     differentialDriveTrain.tankDrive(left, right);
     // differentialDriveTrain.arcadeDrive(speed, rotation);
   }
 
 
-  public void drive(Joystick joy){ 
+
+  public void driveTank(Joystick joy){ 
     System.out.println(-joy.getY() + " " + -joy.getThrottle());
-    drive(-joy.getY(), -joy.getThrottle());
+    driveTank(-joy.getY(), -joy.getThrottle());
   }
+
+
+  public void driveArcade(double speed, double rotation) {
+    differentialDriveTrain.arcadeDrive(speed, rotation);
+  }
+
+  public void driveArcade(Joystick joy) {
+    driveArcade(-joy.getY(), joy.getZ());
+  }
+
 
   public void pushUp () { 
     //pneumatics pushes robot up to climb
   }
   public void retractDown() {
     //pneumatics retracts robot
+  }
+
+  public void switchMode() {
+    driveTankMode = !driveTankMode;
+  }
+
+  public boolean getTankMode() {
+    return driveTankMode;
   }
 
 }

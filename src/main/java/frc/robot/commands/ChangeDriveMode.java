@@ -10,32 +10,33 @@ package frc.robot.commands;
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
 
-public class DriveWithJoysticks extends Command {
-  public DriveWithJoysticks() {
+public class ChangeDriveMode extends Command {
+  
+  private boolean finished = false;
+  
+  public ChangeDriveMode() {
     // Use requires() here to declare subsystem dependencies
+    // eg. requires(chassis);
     requires(Robot.m_driveTrain);
   }
 
   // Called just before this Command runs the first time
   @Override
   protected void initialize() {
-    System.out.println("About to drive with joysticks command");
+    Robot.m_driveTrain.switchMode();
+    finished = true;
   }
 
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    if( Robot.m_driveTrain.getTankMode()) {
-      Robot.m_driveTrain.driveTank(Robot.m_oi.joy);  // the drivetrain object from the Robot class invokes drive()
-    } else {
-      Robot.m_driveTrain.driveArcade(Robot.m_oi.joy);
-    }
+    finished = true;
   }
 
   // Make this return true when this Command no longer needs to run execute()
   @Override
   protected boolean isFinished() {
-    return false;
+    return finished;
   }
 
   // Called once after isFinished returns true

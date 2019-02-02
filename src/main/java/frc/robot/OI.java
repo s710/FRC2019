@@ -38,6 +38,7 @@ public class OI {
 
   public OI(){
     a.whileHeld(new OpenSimplePneumatic());
+    start.whenPressed(new ChangeDriveMode());
   }
   // There are a few additional built in buttons you can use. Additionally,
   // by subclassing Button you can create custom triggers and bind those to
