@@ -38,11 +38,11 @@ public class DriveTrain extends Subsystem {
   private static WPI_TalonSRX extendedMotor = new WPI_TalonSRX(RobotMap.extendedMotor);//Needs to set CAN ID
 
   private boolean driveTankMode = true;
-  private boolean extended = false;
+  // private boolean extended = false;
 
   //Pneumatics will be used in the drivetrain. The following is where that is:
-  private static DoubleSolenoid firstNoid = new DoubleSolenoid(0,1);//Rename these
-  private static DoubleSolenoid secondNoid = new DoubleSolenoid(4,5);
+  private static DoubleSolenoid frontNoid = new DoubleSolenoid(0,1);//Rename these
+  private static DoubleSolenoid backNoid = new DoubleSolenoid(4,5);
   private static DoubleSolenoid thirdNoid;
   private static DoubleSolenoid fourthNoid;//Not sure how many we need
 
@@ -75,24 +75,24 @@ public class DriveTrain extends Subsystem {
   //Pneumatic pushup code
   public void pushUpFront () { 
     //pneumatics pushes robot up to climb
-    firstNoid.set(DoubleSolenoid.Value.kForward);
+    frontNoid.set(DoubleSolenoid.Value.kForward);
   }
   public void pushUpBack() {
-    secondNoid.set(DoubleSolenoid.Value.kForward);
+    backNoid.set(DoubleSolenoid.Value.kForward);
   }
   public void retractDownFront() {
     //pneumatics retracts robot
-    firstNoid.set(DoubleSolenoid.Value.kReverse);
+    frontNoid.set(DoubleSolenoid.Value.kReverse);
   }
   public void retractDownBack() {
-    secondNoid.set(DoubleSolenoid.Value.kReverse);
+    backNoid.set(DoubleSolenoid.Value.kReverse);
   }
-  public void extendState() {
-    extended = true;
-  }
-  public void retractState() {
-    extended =false;
-  }
+  // public void extendState() {
+  //   extended = true;
+  // }
+  // public void retractState() {
+  //   extended =false;
+  // }
 
 
 
