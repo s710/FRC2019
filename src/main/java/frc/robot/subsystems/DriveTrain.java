@@ -38,6 +38,7 @@ public class DriveTrain extends Subsystem {
   private static WPI_TalonSRX extendedMotor = new WPI_TalonSRX(RobotMap.extendedMotor);//Needs to set CAN ID
 
   private boolean driveTankMode = true;
+  private boolean extended = false;
 
   //Pneumatics will be used in the drivetrain. The following is where that is:
   private static DoubleSolenoid firstNoid = new DoubleSolenoid(0,1);//Rename these
@@ -50,7 +51,7 @@ public class DriveTrain extends Subsystem {
   public void initDefaultCommand() {
     // Set the default command for a subsystem here.
     // setDefaultCommand(new MySpecialCommand());
-    setDefaultCommand(new DriveWithJoysticks()); //needs the DriveWithJoysticks command to work
+    setDefaultCommand(new DriveWithJoysticks());
   }
 
   public void driveTank(double left, double right) {
@@ -72,18 +73,34 @@ public class DriveTrain extends Subsystem {
   }
 
   //Pneumatic pushup code
-  public void pushUp () { 
+  public void pushUpFront () { 
     //pneumatics pushes robot up to climb
     firstNoid.set(DoubleSolenoid.Value.kForward);
+  }
+  public void pushUpBack() {
     secondNoid.set(DoubleSolenoid.Value.kForward);
   }
-  public void retractDown() {
+  public void retractDownFront() {
     //pneumatics retracts robot
     firstNoid.set(DoubleSolenoid.Value.kReverse);
+  }
+  public void retractDownBack() {
     secondNoid.set(DoubleSolenoid.Value.kReverse);
   }
-  public void driveExtension(int speed) {
+  public void extendState() {
+    extended = true;
+  }
+  public void retractState() {
+    extended =false;
+  }
+
+
+
+  public void driveExtension(double speed) {
     extendedMotor.set(speed);
+  }
+  public void driveExtension(Joystick joy){
+    driveExtension(joy.getY());
   }
   public void stopDriveExtension() {
     extendedMotor.set(0); //This function is not needed but can be used if wanted
