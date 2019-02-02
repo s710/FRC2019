@@ -10,6 +10,7 @@ package frc.robot.subsystems;
 //import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import frc.robot.commands.DriveWithJoysticks;
+import sun.font.ExtendedTextLabel;
 import frc.robot.RobotMap;
 import edu.wpi.first.wpilibj.*;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
@@ -35,13 +36,15 @@ public class DriveTrain extends Subsystem {
 
   private static DifferentialDrive differentialDriveTrain = new DifferentialDrive(leftMotors, rightMotors);
 
+  private static WPI_TalonSRX extendedMotor = new WPI_TalonSRX(RobotMap.extendedMotor);//Needs to set CAN ID
+
   private boolean driveTankMode = true;
 
   //Pneumatics will be used in the drivetrain. The following is where that is:
-  private static DoubleSolenoid first;
-  private static DoubleSolenoid second;
-  private static DoubleSolenoid third;
-  private static DoubleSolenoid fourth;//Not sure how many we need
+  private static DoubleSolenoid firstNoid = new DoubleSolenoid(0,1);//Rename these
+  private static DoubleSolenoid secondNoid = new DoubleSolenoid(4,5);
+  private static DoubleSolenoid thirdNoid;
+  private static DoubleSolenoid fourthNoid;//Not sure how many we need
 
 
   @Override
@@ -56,9 +59,6 @@ public class DriveTrain extends Subsystem {
     differentialDriveTrain.tankDrive(left, right);
     // differentialDriveTrain.arcadeDrive(speed, rotation);
   }
-
-
-
   public void driveTank(Joystick joy){ 
     System.out.println(-joy.getY() + " " + -joy.getThrottle());
     driveTank(-joy.getY(), -joy.getThrottle());
@@ -68,23 +68,33 @@ public class DriveTrain extends Subsystem {
   public void driveArcade(double speed, double rotation) {
     differentialDriveTrain.arcadeDrive(speed, rotation);
   }
-
   public void driveArcade(Joystick joy) {
     driveArcade(-joy.getY(), joy.getZ());
   }
 
-
+  //Pneumatic pushup code
   public void pushUp () { 
     //pneumatics pushes robot up to climb
+    firstNoid.set(DoubleSolenoid.Value.kForward);
+    secondNoid.set(DoubleSolenoid.Value.kForward);
   }
   public void retractDown() {
     //pneumatics retracts robot
+    firstNoid.set(DoubleSolenoid.Value.kReverse);
+    secondNoid.set(DoubleSolenoid.Value.kReverse);
+  }
+  public void driveExtension(int speed) {
+    extendedMotor.set(speed);
+  }
+  public void stopDriveExtension() {
+    extendedMotor.set(0); //This function is not needed but can be used if wanted
   }
 
+
+  //Tank vs Arcade Mode Code
   public void switchMode() {
     driveTankMode = !driveTankMode;
   }
-
   public boolean getTankMode() {
     return driveTankMode;
   }
