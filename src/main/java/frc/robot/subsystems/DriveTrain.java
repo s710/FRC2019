@@ -59,7 +59,7 @@ public class DriveTrain extends Subsystem {
     differentialDriveTrain.tankDrive(left, right);
     // differentialDriveTrain.arcadeDrive(speed, rotation);
   }
-  public void driveTank(Joystick joy){ 
+  public void driveTank(Joystick joy){
     System.out.println(-joy.getY() + " " + -joy.getThrottle());
     driveTank(-joy.getY(), -joy.getThrottle());
   }
