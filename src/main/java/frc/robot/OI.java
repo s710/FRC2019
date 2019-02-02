@@ -37,7 +37,7 @@ public class OI {
   public JoystickButton start = new JoystickButton(joy, 10);
 
   public OI(){
-    a.whileHeld(new OpenSimplePneumatic());
+    a.whileHeld(new PushHatch());
     start.whenPressed(new ChangeDriveMode());
     lb.whileHeld(new DriveExtendedWithJoysticks());
     rb.whileHeld(new DriveExtendedWithJoysticks());

@@ -10,11 +10,11 @@ package frc.robot.commands;
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
 
-public class CloseSimplePneumatic extends Command {
-  public CloseSimplePneumatic() {
+public class PushHatch extends Command {
+  public PushHatch() {
     // Use requires() here to declare subsystem dependencies
     // eg. requires(chassis);
-    requires(Robot.m_simplePneumatics);
+    requires(Robot.m_hatchpusher);
   }
 
   // Called just before this Command runs the first time
@@ -25,7 +25,7 @@ public class CloseSimplePneumatic extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    Robot.m_simplePneumatics.closeSimpleSolenoid();
+    Robot.m_hatchpusher.pushHatch();
   }
 
   // Make this return true when this Command no longer needs to run execute()
