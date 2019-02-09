@@ -12,7 +12,8 @@ import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-import edu.wpi.first.wpilibj.CameraServer;
+//import edu.wpi.first.wpilibj.CameraServer;
+import edu.wpi.first.cameraserver.*;
 import edu.wpi.first.networktables.NetworkTable;
 import edu.wpi.first.networktables.NetworkTableInstance;
 import edu.wpi.first.networktables.NetworkTableEntry;
@@ -53,9 +54,10 @@ public class Robot extends TimedRobot {
     m_oi = new OI();
 
 
+    CameraServer.getInstance().startAutomaticCapture("USB 0", 0 );
+    CameraServer.getInstance().startAutomaticCapture("USB 1", 1 );
     //CameraServer.getInstance().startAutomaticCapture();
-
-
+// brett big gey
     inst = NetworkTableInstance.getDefault();
 		try {
 			table = inst.getTable("limelight"); 
@@ -124,7 +126,7 @@ public class Robot extends TimedRobot {
       m_autonomousCommand.start();
     }
   }
-
+// frick you brett - Marc
   /**
    * This function is called periodically during autonomous.
    */

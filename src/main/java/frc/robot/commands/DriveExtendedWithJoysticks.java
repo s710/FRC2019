@@ -25,15 +25,18 @@ public class DriveExtendedWithJoysticks extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
+    System.out.print("Driving while extended");
     Robot.m_driveTrain.driveExtension(Robot.m_oi.joy);
     Robot.m_driveTrain.driveArcade(Robot.m_oi.joy.getThrottle(), 0/*Robot.m_oi.joy.getZ()*/);
     if(Robot.m_oi.lb.get()){
       Robot.m_driveTrain.pushUpFront();
+      System.out.print("Pushing up front");
     }else{
       Robot.m_driveTrain.retractDownFront();
     }
     if(Robot.m_oi.rb.get()){
       Robot.m_driveTrain.pushUpBack();
+      System.out.print("Pushing up back");
     }else{
       Robot.m_driveTrain.retractDownBack();
     }
