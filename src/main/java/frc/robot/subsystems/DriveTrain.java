@@ -9,6 +9,7 @@ package frc.robot.subsystems;
 
 //import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.command.Subsystem;
+import frc.robot.commands.ChangeExtendedState;
 import frc.robot.commands.DriveWithJoysticks;
 import frc.robot.RobotMap;
 import edu.wpi.first.wpilibj.*;
@@ -38,6 +39,7 @@ public class DriveTrain extends Subsystem {
   private static WPI_TalonSRX extendedMotor = new WPI_TalonSRX(RobotMap.extendedMotor);//Needs to set CAN ID
 
   private boolean driveTankMode = true;
+  private boolean driveExtended =false;
   // private boolean extended = false;
 
   //Pneumatics will be used in the drivetrain. The following is where that is:
@@ -115,4 +117,11 @@ public class DriveTrain extends Subsystem {
     return driveTankMode;
   }
 
+  //Extended or not?
+  public void changeExtendedState(){
+    driveExtended = !driveExtended;
+  }
+  public boolean getExtendState() {
+    return driveExtended;
+  }
 }

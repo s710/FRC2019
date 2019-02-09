@@ -10,8 +10,11 @@ package frc.robot.commands;
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
 
-public class DriveExtendedWithJoysticks extends Command {
-  public DriveExtendedWithJoysticks() {
+public class ChangeExtendedState extends Command {
+  
+  private boolean finished = false;
+
+  public ChangeExtendedState() {
     // Use requires() here to declare subsystem dependencies
     // eg. requires(chassis);
     requires(Robot.m_driveTrain);
@@ -20,32 +23,19 @@ public class DriveExtendedWithJoysticks extends Command {
   // Called just before this Command runs the first time
   @Override
   protected void initialize() {
+    Robot.m_driveTrain.changeExtendedState();
   }
 
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    System.out.print("Driving while extended");
-    Robot.m_driveTrain.driveExtension(Robot.m_oi.joy);
-    Robot.m_driveTrain.driveArcade(Robot.m_oi.joy.getThrottle(), 0/*Robot.m_oi.joy.getZ()*/);
-    if(Robot.m_oi.lb.get() && Robot.m_driveTrain.getExtendState()){
-      Robot.m_driveTrain.pushUpFront();
-      System.out.print("Pushing up front");
-    }else{
-      Robot.m_driveTrain.retractDownFront();
-    }
-    if(Robot.m_oi.rb.get() && Robot.m_driveTrain.getExtendState()){
-      Robot.m_driveTrain.pushUpBack();
-      System.out.print("Pushing up back");
-    }else{
-      Robot.m_driveTrain.retractDownBack();
-    }
+    finished = true;
   }
 
   // Make this return true when this Command no longer needs to run execute()
   @Override
   protected boolean isFinished() {
-    return false;
+    return finished;
   }
 
   // Called once after isFinished returns true

@@ -39,6 +39,7 @@ public class OI {
   public OI(){
     a.whileHeld(new PushHatch());
     start.whenPressed(new ChangeDriveMode());
+    back.whenPressed(new ChangeExtendedState());
     lb.whileHeld(new DriveExtendedWithJoysticks());
     rb.whileHeld(new DriveExtendedWithJoysticks());
   }
