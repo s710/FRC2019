@@ -16,6 +16,7 @@ import edu.wpi.first.wpilibj.*;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import edu.wpi.first.wpilibj.SpeedControllerGroup;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
+import com.ctre.phoenix.motorcontrol.can.WPI_VictorSPX;
 
 /**
  * Add your docs here.
@@ -24,22 +25,32 @@ public class DriveTrain extends Subsystem {
   // Put methods for controlling this subsystem
   // here. Call these from Commands.
 
-  private static WPI_TalonSRX frontLeftMotor = new WPI_TalonSRX(RobotMap.frontLeftMotor);   
-  private static WPI_TalonSRX frontRightMotor = new WPI_TalonSRX(RobotMap.frontRightMotor);
-  private static WPI_TalonSRX middleLeftMotor = new WPI_TalonSRX(RobotMap.middleLeftMotor);
-  private static WPI_TalonSRX middleRightMotor = new WPI_TalonSRX(RobotMap.middleRightMotor);
-  private static WPI_TalonSRX backLeftMotor = new WPI_TalonSRX(RobotMap.backLeftMotor);
-  private static WPI_TalonSRX backRightMotor = new WPI_TalonSRX(RobotMap.backRightMotor);
+  // private static WPI_TalonSRX frontLeftMotor = new WPI_TalonSRX(RobotMap.frontLeftMotor);   
+  // private static WPI_TalonSRX frontRightMotor = new WPI_TalonSRX(RobotMap.frontRightMotor);
+  // private static WPI_TalonSRX middleLeftMotor = new WPI_TalonSRX(RobotMap.middleLeftMotor);
+  // private static WPI_TalonSRX middleRightMotor = new WPI_TalonSRX(RobotMap.middleRightMotor);
+  // private static WPI_TalonSRX backLeftMotor = new WPI_TalonSRX(RobotMap.backLeftMotor);
+  // private static WPI_TalonSRX backRightMotor = new WPI_TalonSRX(RobotMap.backRightMotor);
+
+  private static WPI_VictorSPX frontLeftMotor = new WPI_VictorSPX(1);   
+  private static WPI_VictorSPX frontRightMotor = new WPI_VictorSPX(2);
+  private static WPI_VictorSPX middleLeftMotor = new WPI_VictorSPX(3);
+  private static WPI_VictorSPX middleRightMotor = new WPI_VictorSPX(4);
+  private static WPI_VictorSPX backLeftMotor = new WPI_VictorSPX(5);
+  private static WPI_VictorSPX backRightMotor = new WPI_VictorSPX(6);
 
   private static SpeedControllerGroup leftMotors = new SpeedControllerGroup(frontLeftMotor, middleLeftMotor, backLeftMotor);
   private static SpeedControllerGroup rightMotors = new SpeedControllerGroup(frontRightMotor, middleRightMotor, backRightMotor);
 
   private static DifferentialDrive differentialDriveTrain = new DifferentialDrive(leftMotors, rightMotors);
 
-  private static WPI_TalonSRX extendedMotor = new WPI_TalonSRX(RobotMap.extendedMotor);//Needs to set CAN ID
+  private static WPI_VictorSPX extendedMotor = new WPI_VictorSPX(7);
 
   private boolean driveTankMode = true;
   private boolean driveExtended =false;
+
+  private boolean frontExtended = false;
+  private boolean backExtended = false;
   // private boolean extended = false;
 
   //Pneumatics will be used in the drivetrain. The following is where that is:
@@ -78,16 +89,20 @@ public class DriveTrain extends Subsystem {
   public void pushUpFront () { 
     //pneumatics pushes robot up to climb
     frontNoid.set(DoubleSolenoid.Value.kForward);
+    frontExtended = true;
   }
   public void pushUpBack() {
     backNoid.set(DoubleSolenoid.Value.kForward);
+    backExtended = true;
   }
   public void retractDownFront() {
     //pneumatics retracts robot
     frontNoid.set(DoubleSolenoid.Value.kReverse);
+    frontExtended = false;
   }
   public void retractDownBack() {
     backNoid.set(DoubleSolenoid.Value.kReverse);
+    backExtended = false;
   }
   // public void extendState() {
   //   extended = true;
@@ -123,5 +138,21 @@ public class DriveTrain extends Subsystem {
   }
   public boolean getExtendState() {
     return driveExtended;
+  }
+
+  public void frontExtended(boolean frontExtendedState){
+    frontExtended = frontExtendedState;
+  }
+  // public void frontExtended(){
+  //   frontExtended = !frontExtended;
+  // }
+  public boolean isFrontExtended() {
+    return frontExtended;
+  }
+  public void backExtended(boolean backExtendedState){
+    backExtended = backExtendedState;
+  }
+  public boolean isBackExtended(){
+    return backExtended;
   }
 }

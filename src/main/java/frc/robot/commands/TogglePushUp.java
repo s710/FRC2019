@@ -8,39 +8,42 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj.command.Command;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.Robot;
 
-public class DriveWithJoysticks extends Command {
-  public DriveWithJoysticks() {
+public class TogglePushUp extends Command {
+
+  private boolean finished = false;
+
+  public TogglePushUp() {
     // Use requires() here to declare subsystem dependencies
-    requires(Robot.m_driveTrain);
+    // eg. requires(chassis);
   }
 
   // Called just before this Command runs the first time
   @Override
   protected void initialize() {
-    System.out.println("About to drive with joysticks command");
   }
 
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    if(Robot.m_driveTrain.isBackExtended()){
-      Robot.m_driveTrain.driveExtension(Robot.m_oi.joy.getY());
-      Robot.m_driveTrain.driveArcade(-0.5*Robot.m_oi.joy.getThrottle(), 0);
-    } else {
-      if( Robot.m_driveTrain.getTankMode()) {
-        Robot.m_driveTrain.driveTank(Robot.m_oi.joy);  // the drivetrain object from the Robot class invokes drive()
-      } else {
-        Robot.m_driveTrain.driveArcade(Robot.m_oi.joy);
-      }
+    if(Robot.m_driveTrain.isBackExtended() != Robot.m_driveTrain.isFrontExtended()){
+      SmartDashboard.putString("A message to the driver", "You nincompoop");
+    } else if (Robot.m_driveTrain.isBackExtended() && Robot.m_driveTrain.isFrontExtended()){
+      Robot.m_driveTrain.retractDownBack();
+      Robot.m_driveTrain.retractDownFront();
+    } else if(!Robot.m_driveTrain.isBackExtended() && !Robot.m_driveTrain.isFrontExtended()){
+      Robot.m_driveTrain.pushUpBack();
+      Robot.m_driveTrain.pushUpFront();
     }
+    finished = true;
   }
 
   // Make this return true when this Command no longer needs to run execute()
   @Override
   protected boolean isFinished() {
-    return false;
+    return finished;
   }
 
   // Called once after isFinished returns true

@@ -40,8 +40,20 @@ public class OI {
     a.whileHeld(new PushHatch());
     start.whenPressed(new ChangeDriveMode());
     back.whenPressed(new ChangeExtendedState());
-    lb.whileHeld(new DriveExtendedWithJoysticks());
-    rb.whileHeld(new DriveExtendedWithJoysticks());
+    // lb.whileHeld(new DriveExtendedWithJoysticks());
+    // rb.whileHeld(new DriveExtendedWithJoysticks());
+
+    lb.whenPressed(new FrontPushUp());
+    rb.whenPressed(new BackPushUp());
+    lt.whenPressed(new FrontRetract());
+    rt.whenPressed(new BackRetract());
+
+    // y.whenPressed(new AllPushUp());
+    // x.whenPressed(new AllRetract());
+    y.whenPressed(new TogglePushUp());
+
+    //rt.whenPressed(new AllPushUp());
+
   }
   // There are a few additional built in buttons you can use. Additionally,
   // by subclassing Button you can create custom triggers and bind those to

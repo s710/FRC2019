@@ -152,6 +152,8 @@ public class Robot extends TimedRobot {
   @Override
   public void teleopPeriodic() {
     Scheduler.getInstance().run();
+    SmartDashboard.putBoolean("IsFrontExtended", m_driveTrain.isFrontExtended());
+    SmartDashboard.putBoolean("IsBackExtended", m_driveTrain.isBackExtended());
   }
 
   /**
