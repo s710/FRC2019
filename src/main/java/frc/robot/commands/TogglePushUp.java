@@ -30,10 +30,10 @@ public class TogglePushUp extends Command {
   protected void execute() {
     if(Robot.m_driveTrain.isBackExtended() != Robot.m_driveTrain.isFrontExtended()){
       SmartDashboard.putString("A message to the driver", "You nincompoop");
-    } else if (Robot.m_driveTrain.isBackExtended() && Robot.m_driveTrain.isFrontExtended()){
+    } else if (Robot.m_driveTrain.isBackExtended() && Robot.m_driveTrain.isFrontExtended()){ // both true
       Robot.m_driveTrain.retractDownBack();
       Robot.m_driveTrain.retractDownFront();
-    } else if(!Robot.m_driveTrain.isBackExtended() && !Robot.m_driveTrain.isFrontExtended()){
+    } else if(!Robot.m_driveTrain.isBackExtended() && !Robot.m_driveTrain.isFrontExtended()){ //both false
       Robot.m_driveTrain.pushUpBack();
       Robot.m_driveTrain.pushUpFront();
     }
