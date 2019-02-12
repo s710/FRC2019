@@ -52,6 +52,7 @@ public class OI {
     // x.whenPressed(new AllRetract());
     y.whenPressed(new TogglePushUp());
 
+    b.whenPressed(new ToggleSpeed());
     //rt.whenPressed(new AllPushUp());
 
   }

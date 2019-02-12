@@ -45,10 +45,12 @@ public class DriveTrain extends Subsystem {
 
   private static DifferentialDrive differentialDriveTrain = new DifferentialDrive(leftMotors, rightMotors);
 
-  private static WPI_VictorSPX extendedMotor = new WPI_VictorSPX(7);
+  private static WPI_VictorSPX extendedMotor = new WPI_VictorSPX(8);
 
   private boolean driveTankMode = true;
   private boolean driveExtended =false;
+
+  private double driveSpeed = 1.0;
 
   private boolean frontExtended = false;
   private boolean backExtended = false;
@@ -57,8 +59,8 @@ public class DriveTrain extends Subsystem {
   //Pneumatics will be used in the drivetrain. The following is where that is:
   private static DoubleSolenoid frontNoid = new DoubleSolenoid(0,1);//Rename these
   private static DoubleSolenoid backNoid = new DoubleSolenoid(4,5);
-  private static DoubleSolenoid thirdNoid;
-  private static DoubleSolenoid fourthNoid;//Not sure how many we need
+  //private static DoubleSolenoid thirdNoid;
+  //private static DoubleSolenoid fourthNoid;//Not sure how many we need
 
 
   @Override
@@ -70,7 +72,7 @@ public class DriveTrain extends Subsystem {
 
   public void driveTank(double left, double right) {
     System.out.println("drive(double left, double right) reached");
-    differentialDriveTrain.tankDrive(left, right);
+    differentialDriveTrain.tankDrive(driveSpeed*left, driveSpeed*right);
     // differentialDriveTrain.arcadeDrive(speed, rotation);
   }
   public void driveTank(Joystick joy){
@@ -80,7 +82,7 @@ public class DriveTrain extends Subsystem {
 
 
   public void driveArcade(double speed, double rotation) {
-    differentialDriveTrain.arcadeDrive(speed, rotation);
+    differentialDriveTrain.arcadeDrive(driveSpeed*speed, rotation);
   }
   public void driveArcade(Joystick joy) {
     driveArcade(-joy.getY(), joy.getZ());
@@ -155,5 +157,17 @@ public class DriveTrain extends Subsystem {
   }
   public boolean isBackExtended(){
     return backExtended;
+  }
+
+
+
+  public void changeSpeed() {
+    if(driveSpeed == 0.8){
+      driveSpeed = 1.0;
+    }else if(driveSpeed == 1.0){
+      driveSpeed = 0.8;
+    } else {
+      driveSpeed = 0.7;
+    }
   }
 }

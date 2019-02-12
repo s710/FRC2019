@@ -29,7 +29,7 @@ public class Navigation extends Subsystem {
       ahrs = new AHRS(SerialPort.Port.kUSB1);
       ahrs.reset();
     } catch (RuntimeException ex ) {
-      System.out.print("Failed Gyro");
+      System.out.print("Failed Gyro. You dun goofed");
     }
   }
 

@@ -57,7 +57,7 @@ public class Robot extends TimedRobot {
     CameraServer.getInstance().startAutomaticCapture("USB 0", 0 );
     CameraServer.getInstance().startAutomaticCapture("USB 1", 1 );
     //CameraServer.getInstance().startAutomaticCapture();
-// brett big gey
+
     inst = NetworkTableInstance.getDefault();
 		try {
 			table = inst.getTable("limelight"); 
@@ -126,7 +126,7 @@ public class Robot extends TimedRobot {
       m_autonomousCommand.start();
     }
   }
-// frick you brett - Marc
+
   /**
    * This function is called periodically during autonomous.
    */
