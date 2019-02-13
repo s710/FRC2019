@@ -26,8 +26,8 @@ public class DriveWithJoysticks extends Command {
   @Override
   protected void execute() {
     if(Robot.m_driveTrain.isBackExtended()){
-      Robot.m_driveTrain.driveExtension(0.5*Robot.m_oi.joy.getThrottle());
-      Robot.m_driveTrain.driveArcade(-0.76*Robot.m_oi.joy.getY(), 0);
+      Robot.m_driveTrain.driveExtension(0.5*Robot.m_oi.joy.getY());
+      Robot.m_driveTrain.driveArcade(-0.76*Robot.m_oi.joy.getY(), 0.2*Robot.m_oi.joy.getThrottle());
     } else {
       if( Robot.m_driveTrain.getTankMode()) {
         Robot.m_driveTrain.driveTank(Robot.m_oi.joy);  // the drivetrain object from the Robot class invokes drive()
