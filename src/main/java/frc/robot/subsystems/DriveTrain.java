@@ -59,6 +59,7 @@ public class DriveTrain extends Subsystem {
 
   //Pneumatics will be used in the drivetrain. The following is where that is:
   private static DoubleSolenoid frontNoid = new DoubleSolenoid(0,1);//Rename these
+  private static DoubleSolenoid frontNoidSecondary = new DoubleSolenoid(2,3);
   private static DoubleSolenoid backNoid = new DoubleSolenoid(4,5);
   //private static DoubleSolenoid thirdNoid;
   //private static DoubleSolenoid fourthNoid;//Not sure how many we need
@@ -125,6 +126,7 @@ public class DriveTrain extends Subsystem {
   public void pushUpFront () { 
     //pneumatics pushes robot up to climb
     frontNoid.set(DoubleSolenoid.Value.kForward);
+    frontNoidSecondary.set(DoubleSolenoid.Value.kForward);
     frontExtended = true;
   }
   public void pushUpBack() {
@@ -134,6 +136,7 @@ public class DriveTrain extends Subsystem {
   public void retractDownFront() {
     //pneumatics retracts robot
     frontNoid.set(DoubleSolenoid.Value.kReverse);
+    frontNoidSecondary.set(DoubleSolenoid.Value.kReverse);
     frontExtended = false;
   }
   public void retractDownBack() {
