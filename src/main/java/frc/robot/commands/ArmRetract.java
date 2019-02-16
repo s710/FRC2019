@@ -10,8 +10,8 @@ package frc.robot.commands;
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
 
-public class RetractHatch extends Command {
-  public RetractHatch() {
+public class ArmRetract extends Command {
+  public ArmRetract() {
     // Use requires() here to declare subsystem dependencies
     // eg. requires(chassis);
     requires(Robot.m_hatchpusher);

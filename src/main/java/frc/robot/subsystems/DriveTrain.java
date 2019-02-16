@@ -88,6 +88,8 @@ public class DriveTrain extends Subsystem {
     driveArcade(-joy.getY(), joy.getZ());
   }
 
+//\\ duh duh dudududu duh duh \\//
+
   //Pneumatic pushup code
   public void pushUpFront () { 
     //pneumatics pushes robot up to climb
@@ -148,7 +150,7 @@ public class DriveTrain extends Subsystem {
   }
   // public void frontExtended(){
   //   frontExtended = !frontExtended;
-  // }
+  // }//ur a bum
   public boolean isFrontExtended() {
     return frontExtended;
   }

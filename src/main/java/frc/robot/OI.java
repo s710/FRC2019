@@ -37,7 +37,7 @@ public class OI {
   public JoystickButton start = new JoystickButton(joy, 10);
 
   public OI(){
-    a.whileHeld(new PushHatch());
+    a.whileHeld(new ArmExtend());
     start.whenPressed(new ChangeDriveMode());
     back.whenPressed(new ChangeExtendedState());
     // lb.whileHeld(new DriveExtendedWithJoysticks());

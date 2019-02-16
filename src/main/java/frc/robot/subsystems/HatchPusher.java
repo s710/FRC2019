@@ -8,7 +8,7 @@
 package frc.robot.subsystems;
 
 import edu.wpi.first.wpilibj.command.Subsystem;
-import frc.robot.commands.RetractHatch;
+import frc.robot.commands.ArmRetract;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 
 /**
@@ -24,7 +24,7 @@ public class HatchPusher extends Subsystem {
   public void initDefaultCommand() {
     // Set the default command for a subsystem here.
     // setDefaultCommand(new MySpecialCommand());
-    setDefaultCommand(new RetractHatch());
+    setDefaultCommand(new ArmRetract());
   }
 
   public void pushHatch(){

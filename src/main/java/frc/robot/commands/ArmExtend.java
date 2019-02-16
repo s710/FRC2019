@@ -10,8 +10,8 @@ package frc.robot.commands;
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
 
-public class PushHatch extends Command {
-  public PushHatch() {
+public class ArmExtend extends Command {
+  public ArmExtend() {
     // Use requires() here to declare subsystem dependencies
     // eg. requires(chassis);
     requires(Robot.m_hatchpusher);
