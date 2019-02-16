@@ -18,12 +18,12 @@ package frc.robot;
  */
 public class RobotMap {
   
-  public static int frontLeftMotor = 4;
-  public static int frontRightMotor = 2;
-  public static int middleLeftMotor = 11;
-  public static int middleRightMotor = 10;
-  public static int backLeftMotor = 6;
-  public static int backRightMotor = 7;
-  public static int extendedMotor = 0;//set ID
+  // public static int frontLeftMotor = 4;
+  // public static int frontRightMotor = 2;
+  // public static int middleLeftMotor = 11;
+  // public static int middleRightMotor = 10;
+  // public static int backLeftMotor = 6;
+  // public static int backRightMotor = 7;
+  // public static int extendedMotor = 0;//set ID
 
 }
