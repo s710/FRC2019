@@ -43,10 +43,13 @@ public class OI {
     // lb.whileHeld(new DriveExtendedWithJoysticks());
     // rb.whileHeld(new DriveExtendedWithJoysticks());
 
-    lb.whenPressed(new FrontPushUp());
-    rb.whenPressed(new BackPushUp());
-    lt.whenPressed(new FrontRetract());
-    rt.whenPressed(new BackRetract());
+    // lb.whenPressed(new FrontPushUp());
+    // rb.whenPressed(new BackPushUp());
+    // lt.whenPressed(new FrontRetract());
+    // rt.whenPressed(new BackRetract());
+
+    rt.whenPressed(new TogglePushUpForward());
+    rb.whenPressed(new TogglePushUpBack());
 
     // y.whenPressed(new AllPushUp());
     // x.whenPressed(new AllRetract());

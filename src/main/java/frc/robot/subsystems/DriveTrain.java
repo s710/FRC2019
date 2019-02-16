@@ -15,6 +15,7 @@ import frc.robot.commands.DriveWithJoysticks;
 import edu.wpi.first.wpilibj.*;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import edu.wpi.first.wpilibj.SpeedControllerGroup;
+import edu.wpi.first.wpilibj.Timer;
 //import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 import com.ctre.phoenix.motorcontrol.can.WPI_VictorSPX;
 //import edu.wpi.first.wpilibj.Encoder;
@@ -47,7 +48,7 @@ public class DriveTrain extends Subsystem {
 
   private static WPI_VictorSPX extendedMotor = new WPI_VictorSPX(8);
 
-  private boolean driveTankMode = true;
+  private boolean driveTankMode = false;
   private boolean driveExtended =false;
 
   private double driveSpeed = 1.0;
@@ -62,6 +63,36 @@ public class DriveTrain extends Subsystem {
   //private static DoubleSolenoid thirdNoid;
   //private static DoubleSolenoid fourthNoid;//Not sure how many we need
 
+  public DriveTrain(){
+    super();
+    frontLeftMotor.configOpenloopRamp(.5);
+    middleLeftMotor.configOpenloopRamp(.5);
+    backLeftMotor.configOpenloopRamp(.5);
+    frontRightMotor.configOpenloopRamp(.5);
+    middleRightMotor.configOpenloopRamp(.5);
+    backRightMotor.configOpenloopRamp(.5);
+  }
+
+  // //TIMER STUFF. COMPLICATED. FOURTH DIMENSIONAL MAGIC. MIGHT EXPLODE. CAUTION.
+  // private double timeFrozen;
+  // private double timeCurrent;
+  // private double timePassed;
+  // public void beginTheTimeThing(){
+  //   timeFrozen = Timer.getFPGATimestamp();
+  // }
+  // public void timePassing(){
+  //   timeCurrent = Timer.getFPGATimestamp();
+  //   timePassed = (timeCurrent-timeFrozen);
+  // }
+  // public double getTimePassed(){
+  //   return timePassed;
+  // }
+  // /*
+  //  * Here are the basics for this time thing.
+  //  * It does stuff.
+  //  */
+
+
 
   @Override
   public void initDefaultCommand() {
@@ -72,7 +103,7 @@ public class DriveTrain extends Subsystem {
 
   public void driveTank(double left, double right) {
     System.out.println("drive(double left, double right) reached");
-    differentialDriveTrain.tankDrive(driveSpeed*left, driveSpeed*right);
+    differentialDriveTrain.tankDrive(/*leftSpeed**/driveSpeed*left, /*rightSpeed**/driveSpeed*right);
     // differentialDriveTrain.arcadeDrive(speed, rotation);
   }
   public void driveTank(Joystick joy){
@@ -82,7 +113,7 @@ public class DriveTrain extends Subsystem {
 
 
   public void driveArcade(double speed, double rotation) {
-    differentialDriveTrain.arcadeDrive(driveSpeed*speed, rotation);
+    differentialDriveTrain.arcadeDrive(/*leftSpeed**/driveSpeed*speed, rotation);
   }
   public void driveArcade(Joystick joy) {
     driveArcade(-joy.getY(), joy.getZ());
@@ -113,7 +144,7 @@ public class DriveTrain extends Subsystem {
   //   extended = true;
   // }
   // public void retractState() {
-  //   extended =false;
+  //   extended = false;
   // }
 
 
@@ -150,7 +181,7 @@ public class DriveTrain extends Subsystem {
   }
   // public void frontExtended(){
   //   frontExtended = !frontExtended;
-  // }//ur a bum
+  // }
   public boolean isFrontExtended() {
     return frontExtended;
   }
@@ -172,4 +203,7 @@ public class DriveTrain extends Subsystem {
       driveSpeed = 0.7;
     }
   }
+
+
+
 }
