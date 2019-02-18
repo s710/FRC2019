@@ -24,6 +24,8 @@ import frc.robot.subsystems.DriveTrain;
 import frc.robot.subsystems.ExampleSubsystem;
 import frc.robot.subsystems.HatchPusher;
 
+import frc.robot.subsystems.Navigation;
+
 /**
  * The VM is configured to automatically run this class, and to call the
  * functions corresponding to each mode, as described in the TimedRobot
@@ -36,6 +38,7 @@ public class Robot extends TimedRobot {
   public static DriveTrain m_driveTrain = new DriveTrain();
   public static HatchPusher m_hatchpusher = new HatchPusher();
   public static OI m_oi;
+  public static Navigation m_navigation;
 
   private NetworkTable table;
   private NetworkTableInstance inst;
@@ -52,7 +55,7 @@ public class Robot extends TimedRobot {
   public void robotInit() {
     System.out.println("Initializing");
     m_oi = new OI();
-
+    m_navigation = new Navigation();
 
     CameraServer.getInstance().startAutomaticCapture("USB 0", 0 );
     CameraServer.getInstance().startAutomaticCapture("USB 1", 1 );
@@ -70,6 +73,12 @@ public class Robot extends TimedRobot {
     m_chooser.setDefaultOption("Default Auto", new ExampleCommand());
     // chooser.addOption("My Auto", new MyAutoCommand());
     SmartDashboard.putData("Auto mode", m_chooser);
+
+    SmartDashboard.putNumber("Angle Threshold: ", 13);
+    SmartDashboard.putNumber("Accel Ticker Threshold", 3);
+    SmartDashboard.putNumber("Current Pitch Angle: ", Robot.m_navigation.getPitch());
+    SmartDashboard.putNumber("Back Extend Delay Time (s): ", 0.25);
+
   }
 
   /**
@@ -93,20 +102,20 @@ public class Robot extends TimedRobot {
   @Override
   public void disabledInit() {
 /*
-              █▌▒▒██                      ▄▄▀▀▒▒█▌
               █▌▒▒▒▒██                ▄▄▀▀▒▒▒▒▒▒▐█
+ ▐█▒▒▒▒▒▒▒▒▒▒▒▒▒▀▀▀▀▀▀▒▒▒▒▒▒▒▒▒▒▒▒░░▒▒░░▒▒░░▒▒░░▒▒▒▒▒▒█▌
               ▐█▄▄▀▀▒▒▒▒▀▀▀▀▀▀▀▀▄▄▄▄▄▄▀▀▒▒▒▒▒▒▒▒▒▐█
-          ▄▄██▀▀▒▒░░▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒██▒▒▒▒▄▄██▒▒█▌
       ▄▄▀▀▒▒▒▒▒▒░░░░░░▒▒▒▒▒▒░░░░░░▒▒▒▒▒▒▀▀████▀▀▒▒▐█
-     █▒▒▒▒▒▒▄██▄▒▒▒▒▒▒▒▒░░░░░░▒▒▒▒▒▒▒▒▒▒▒▒▒▒▀▀▄▄▒▒▒▒█▌
-   ▐█▒░░░░▌▌██▀▀▒▒▒▒▒▒▒▒▒▒▄▄▀▀██▄▄▒▒▒▒▒▒▒▒▒▒▒▒▒▒██▒▒▐█
   ▐█░░░░░░▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▌▌████▀▀▒▒▒▒░░░░░░▒▒▒▒▒▒▀▀▄▄█
-  █▒░░▒▒▄▄████▄▄▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒░░░░░░░░░░░░▒▒▒▒▒▒▒▒█▌
  █▒▒▀▀▐█▄▄██▄▄███▌▄▄░░▀▀▒▒▒▒░░░░░░░░░░░░░░░░░░░░▒▒▒▒▒▒▐█
 ▐▒▒▒▒▐█▀▀▐█▀▀▒▒░░▄▄▄▄▒▒▄▄▒▒▒▒▒▒▒▒▒▒▒▒░░▒▒░░▒▒░░▒▒▒▒▒▒▒▒█▌
+    ▀▀▄▄▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒░░▒▒░░▒▒░░▒▒▄▄▒▒▒▒▒▒▒█▌
+   ▐█▒░░░░▌▌██▀▀▒▒▒▒▒▒▒▒▒▒▄▄▀▀██▄▄▒▒▒▒▒▒▒▒▒▒▒▒▒▒██▒▒▐█
 ▐█▒▒▒▒▒▒▀▀▀▀▄▄▄▄▒▒▒▒▒▒▄▄▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒░░▒▒░░▒▒░░▒▒▒▒▐█
- ▐█▒▒▒▒▒▒▒▒▒▒▒▒▒▀▀▀▀▀▀▒▒▒▒▒▒▒▒▒▒▒▒░░▒▒░░▒▒░░▒▒░░▒▒▒▒▒▒█▌
+          ▄▄██▀▀▒▒░░▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒██▒▒▒▒▄▄██▒▒█▌
+     █▒▒▒▒▒▒▄██▄▒▒▒▒▒▒▒▒░░░░░░▒▒▒▒▒▒▒▒▒▒▒▒▒▒▀▀▄▄▒▒▒▒█▌
   ▐█▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒░░▒▒░░▒▒░░▒▒▒▒▄▄▒▒▒▒▐█
+              █▌▒▒██                      ▄▄▀▀▒▒█▌
     ▀▀▄▄▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒░░▒▒░░▒▒░░▒▒▄▄▒▒▒▒▒▒▒█▌
         ▀▀▄▄▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▄▄▄▄▄▄▀▀▒▒▒▒▒▒▒▒▄▄▀▀
             ▀▀▄▄▄▄▄▄▄▄▄▄▄▄▀▀▀▀▀▀▒▒▒▒▒▒▒▒▒▒▄▄▄▄▀▀

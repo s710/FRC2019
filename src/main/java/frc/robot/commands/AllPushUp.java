@@ -9,6 +9,9 @@ package frc.robot.commands;
 
 import edu.wpi.first.wpilibj.command.CommandGroup;
 
+import edu.wpi.first.wpilibj.Timer;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+
 public class AllPushUp extends CommandGroup {
   /**
    * Add your docs here.
@@ -19,6 +22,9 @@ public class AllPushUp extends CommandGroup {
     // addSequential(new Command2());
     // these will run in order.
     addParallel(new FrontPushUp());
+
+    Timer.delay(SmartDashboard.getNumber("Back Extend Delay Time (ms): ", 250)/1000);
+
     addParallel(new BackPushUp());
     // To run multiple commands at the same time,
     // use addParallel()

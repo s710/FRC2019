@@ -10,13 +10,17 @@ package frc.robot.commands;
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
 
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+
 public class BackPushUp extends Command {
 
   private boolean finished= false;
+  private int ticker = 0;
 
   public BackPushUp() {
     // Use requires() here to declare subsystem dependencies
     // eg. requires(chassis);
+    requires(Robot.m_navigation);
   }
 
   // Called just before this Command runs the first time
@@ -28,8 +32,24 @@ public class BackPushUp extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    Robot.m_driveTrain.pushUpBack();
+    
+  
+    SmartDashboard.putNumber("BackPushUpTicker", ticker);
+    if(Robot.m_navigation.getUpAccel() != 0 || ticker < SmartDashboard.getNumber("Accel Ticker Threshold", 5)) {
+
+      Robot.m_driveTrain.pushUpBack();
+      ticker += 1;
+
+      if(Robot.m_navigation.getPitch() > SmartDashboard.getNumber("Angle Threshold: ", 13) ){
+
+        Robot.m_driveTrain.freezeBack();
+      }
+
+    } else {
+
+    ticker = 0;
     finished = true;
+    }   
   }
 
   // Make this return true when this Command no longer needs to run execute()

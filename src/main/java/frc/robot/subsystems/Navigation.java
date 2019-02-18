@@ -29,7 +29,7 @@ public class Navigation extends Subsystem {
       ahrs = new AHRS(SerialPort.Port.kUSB1);
       ahrs.reset();
     } catch (RuntimeException ex ) {
-      System.out.print("Failed Gyro. You dun goofed");
+      System.out.print("Failed Gyro. You dun goofed.");
     }
   }
 
@@ -40,16 +40,20 @@ public class Navigation extends Subsystem {
     //Probably never gonna use
   }
 
-  public void getAngle(){
-    ahrs.getAngle();
+  public double getAngle(){
+    return ahrs.getAngle();
   }
 
-  public void getPitch(){
-    ahrs.getPitch();  //Pitch is angle about the x-axis, i.e. how much tilt forward or backward
+  public double getPitch(){
+    return ahrs.getPitch();  //Pitch is angle about the x-axis, i.e. how much tilt forward or backward
   }
 
-  public void getRoll() {
-    ahrs.getRoll();   //Roll is angle about the y-axis, i.e. how much tilt left or right, like it is rolling side to side
+  public double getRoll() {
+    return ahrs.getRoll();   //Roll is angle about the y-axis, i.e. how much tilt left or right, like it is rolling side to side
+  }
+
+  public double getUpAccel() {
+    return ahrs.getRawAccelZ();
   }
 
 }

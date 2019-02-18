@@ -51,6 +51,9 @@ public class OI {
     rt.whenPressed(new TogglePushUpForward());
     rb.whenPressed(new TogglePushUpBack());
 
+    lt.whileHeld(new FrontFreeze());
+    lb.whileHeld(new BackFreeze());
+
     // y.whenPressed(new AllPushUp());
     // x.whenPressed(new AllRetract());
     y.whenPressed(new TogglePushUp());

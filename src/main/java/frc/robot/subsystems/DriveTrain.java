@@ -15,7 +15,7 @@ import frc.robot.commands.DriveWithJoysticks;
 import edu.wpi.first.wpilibj.*;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import edu.wpi.first.wpilibj.SpeedControllerGroup;
-import edu.wpi.first.wpilibj.Timer;
+//import edu.wpi.first.wpilibj.Timer;
 //import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 import com.ctre.phoenix.motorcontrol.can.WPI_VictorSPX;
 //import edu.wpi.first.wpilibj.Encoder;
@@ -150,6 +150,13 @@ public class DriveTrain extends Subsystem {
   //   extended = false;
   // }
 
+  public void freezeFront() {
+   // frontNoid.set(DoubleSolenoid.Value.kOff);
+  }
+
+  public void freezeBack() {
+   // frontNoid.set(DoubleSolenoid.Value.kOff);
+  }
 
 
   public void driveExtension(double speed) {
