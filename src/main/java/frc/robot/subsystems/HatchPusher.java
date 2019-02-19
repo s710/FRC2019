@@ -18,7 +18,7 @@ public class HatchPusher extends Subsystem {
   // Put methods for controlling this subsystem
   // here. Call these from Commands.
 
-  DoubleSolenoid simpleDoubleSol = new DoubleSolenoid(8, 9);
+  DoubleSolenoid simpleDoubleSol = new DoubleSolenoid(6, 7);
 
   @Override
   public void initDefaultCommand() {

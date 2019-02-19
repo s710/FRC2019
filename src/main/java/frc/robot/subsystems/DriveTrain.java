@@ -151,11 +151,11 @@ public class DriveTrain extends Subsystem {
   // }
 
   public void freezeFront() {
-   // frontNoid.set(DoubleSolenoid.Value.kOff);
+   frontNoid.set(DoubleSolenoid.Value.kOff);
   }
 
   public void freezeBack() {
-   // frontNoid.set(DoubleSolenoid.Value.kOff);
+   frontNoid.set(DoubleSolenoid.Value.kOff);
   }
 
 
@@ -205,12 +205,10 @@ public class DriveTrain extends Subsystem {
 
 
   public void changeSpeed() {
-    if(driveSpeed == 0.8){
+    if(driveSpeed == 0.3){
       driveSpeed = 1.0;
-    }else if(driveSpeed == 1.0){
-      driveSpeed = 0.8;
-    } else {
-      driveSpeed = 0.7;
+    }else{
+      driveSpeed = 0.3;
     }
   }
 

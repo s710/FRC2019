@@ -10,7 +10,10 @@ package frc.robot.commands;
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
 
+//import frc.robot.commands.AllPushUp;
+
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+//import edu.wpi.first.wpilibj.Timer;
 
 public class BackPushUp extends Command {
 
@@ -33,8 +36,12 @@ public class BackPushUp extends Command {
   @Override
   protected void execute() {
     
-  
     SmartDashboard.putNumber("BackPushUpTicker", ticker);
+
+    /*if(AllPushUp.extendButtonUsed()){
+      Timer.delay(SmartDashboard.getNumber("Back Extend Delay (ms): ", 250)/1000);
+    }*/
+
     if(Robot.m_navigation.getUpAccel() != 0 || ticker < SmartDashboard.getNumber("Accel Ticker Threshold", 5)) {
 
       Robot.m_driveTrain.pushUpBack();

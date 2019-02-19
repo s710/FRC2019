@@ -8,15 +8,14 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj.command.Command;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj.Timer;
-import frc.robot.Robot;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
-public class TogglePushUp extends Command {
+public class Delay extends Command {
 
   private boolean finished = false;
 
-  public TogglePushUp() {
+  public Delay() {
     // Use requires() here to declare subsystem dependencies
     // eg. requires(chassis);
   }
@@ -24,23 +23,21 @@ public class TogglePushUp extends Command {
   // Called just before this Command runs the first time
   @Override
   protected void initialize() {
+    
   }
 
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    if(Robot.m_driveTrain.isBackExtended() != Robot.m_driveTrain.isFrontExtended()){
-      //SmartDashboard.putString("A message to the driver", "You nincompoop");
-    } else if (Robot.m_driveTrain.isBackExtended() && Robot.m_driveTrain.isFrontExtended()){ // both true
-      Robot.m_driveTrain.retractDownBack();
-      Robot.m_driveTrain.retractDownFront();
-    } else if(!Robot.m_driveTrain.isBackExtended() && !Robot.m_driveTrain.isFrontExtended()){ //both false
-      Robot.m_driveTrain.pushUpFront();
-      Timer.delay(SmartDashboard.getNumber("Back Extend Delay (ms): ", 250)/1000);
-      Robot.m_driveTrain.pushUpBack();
-      // new AllPushUp();
-    }
+    Timer.delay(SmartDashboard.getNumber("Back Extend Delay (ms): ",250));
+
+    
+    System.out.println("Print line uh oh no");
+    System.out.println(SmartDashboard.getNumber("Back Extend Delay (ms): ",250)/1000);
+
+
     finished = true;
+    
   }
 
   // Make this return true when this Command no longer needs to run execute()

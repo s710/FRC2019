@@ -70,14 +70,16 @@ public class Robot extends TimedRobot {
     }
     table.getEntry("camMode").setNumber(1);
 
+
     m_chooser.setDefaultOption("Default Auto", new ExampleCommand());
     // chooser.addOption("My Auto", new MyAutoCommand());
     SmartDashboard.putData("Auto mode", m_chooser);
 
+
     SmartDashboard.putNumber("Angle Threshold: ", 13);
-    SmartDashboard.putNumber("Accel Ticker Threshold", 3);
-    SmartDashboard.putNumber("Current Pitch Angle: ", Robot.m_navigation.getPitch());
-    SmartDashboard.putNumber("Back Extend Delay Time (s): ", 0.25);
+    SmartDashboard.putNumber("Accel Ticker Threshold: ", 3);
+
+    SmartDashboard.putNumber("Back Extend Delay (ms): ", 250);
 
   }
 
@@ -92,6 +94,7 @@ public class Robot extends TimedRobot {
   @Override
   public void robotPeriodic() {
     //System.out.println("Periodic");
+    SmartDashboard.putNumber("Current Pitch Angle: ", Robot.m_navigation.getPitch());
   }
 
   /**
@@ -102,9 +105,10 @@ public class Robot extends TimedRobot {
   @Override
   public void disabledInit() {
 /*
+              █▌▒▒██                      ▄▄▀▀▒▒█▌
               █▌▒▒▒▒██                ▄▄▀▀▒▒▒▒▒▒▐█
- ▐█▒▒▒▒▒▒▒▒▒▒▒▒▒▀▀▀▀▀▀▒▒▒▒▒▒▒▒▒▒▒▒░░▒▒░░▒▒░░▒▒░░▒▒▒▒▒▒█▌
-              ▐█▄▄▀▀▒▒▒▒▀▀▀▀▀▀▀▀▄▄▄▄▄▄▀▀▒▒▒▒▒▒▒▒▒▐█
+         ▄▄██▀▀▒▒░░▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒██▒▒▒▒▄▄██▒▒█
+            ▐█▄▄▀▀▒▒▒▒▀▀▀▀▀▀▀▀▄▄▄▄▄▄▀▀▒▒▒▒▒▒▒▒▒▐█
       ▄▄▀▀▒▒▒▒▒▒░░░░░░▒▒▒▒▒▒░░░░░░▒▒▒▒▒▒▀▀████▀▀▒▒▐█
   ▐█░░░░░░▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▌▌████▀▀▒▒▒▒░░░░░░▒▒▒▒▒▒▀▀▄▄█
  █▒▒▀▀▐█▄▄██▄▄███▌▄▄░░▀▀▒▒▒▒░░░░░░░░░░░░░░░░░░░░▒▒▒▒▒▒▐█
@@ -112,10 +116,10 @@ public class Robot extends TimedRobot {
     ▀▀▄▄▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒░░▒▒░░▒▒░░▒▒▄▄▒▒▒▒▒▒▒█▌
    ▐█▒░░░░▌▌██▀▀▒▒▒▒▒▒▒▒▒▒▄▄▀▀██▄▄▒▒▒▒▒▒▒▒▒▒▒▒▒▒██▒▒▐█
 ▐█▒▒▒▒▒▒▀▀▀▀▄▄▄▄▒▒▒▒▒▒▄▄▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒░░▒▒░░▒▒░░▒▒▒▒▐█
-          ▄▄██▀▀▒▒░░▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒██▒▒▒▒▄▄██▒▒█▌
+          ▌
      █▒▒▒▒▒▒▄██▄▒▒▒▒▒▒▒▒░░░░░░▒▒▒▒▒▒▒▒▒▒▒▒▒▒▀▀▄▄▒▒▒▒█▌
   ▐█▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒░░▒▒░░▒▒░░▒▒▒▒▄▄▒▒▒▒▐█
-              █▌▒▒██                      ▄▄▀▀▒▒█▌
+  ▐█▒▒▒▒▒▒▒▒▒▒▒▒▒▀▀▀▀▀▀▒▒▒▒▒▒▒▒▒▒▒▒░░▒▒░░▒▒░░▒▒░░▒▒▒▒▒▒█▌
     ▀▀▄▄▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒░░▒▒░░▒▒░░▒▒▄▄▒▒▒▒▒▒▒█▌
         ▀▀▄▄▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▄▄▄▄▄▄▀▀▒▒▒▒▒▒▒▒▄▄▀▀
             ▀▀▄▄▄▄▄▄▄▄▄▄▄▄▀▀▀▀▀▀▒▒▒▒▒▒▒▒▒▒▄▄▄▄▀▀

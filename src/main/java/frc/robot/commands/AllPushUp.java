@@ -9,23 +9,32 @@ package frc.robot.commands;
 
 import edu.wpi.first.wpilibj.command.CommandGroup;
 
-import edu.wpi.first.wpilibj.Timer;
+//import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import edu.wpi.first.wpilibj.Timer;
 
 public class AllPushUp extends CommandGroup {
   /**
    * Add your docs here.
    */
+  //private static boolean extendButtonUsed;
+
   public AllPushUp() {
     // Add Commands here:
     // e.g. addSequential(new Command1());
     // addSequential(new Command2());
     // these will run in order.
-    addParallel(new FrontPushUp());
 
-    Timer.delay(SmartDashboard.getNumber("Back Extend Delay Time (ms): ", 250)/1000);
+    addSequential(new FrontPushUp());
 
-    addParallel(new BackPushUp());
+
+    addSequential(new Delay());
+
+    //Timer.delay(SmartDashboard.getNumber("Back Extend Delay (ms): ", 250));
+    //extendButtonUsed = true;
+    addSequential(new BackPushUp());
+    //extendButtonUsed = false;
+
     // To run multiple commands at the same time,
     // use addParallel()
     // e.g. addParallel(new Command1());
@@ -38,4 +47,9 @@ public class AllPushUp extends CommandGroup {
     // a CommandGroup containing them would require both the chassis and the
     // arm.
   }
+
+
+  /*public static boolean extendButtonUsed(){
+    return extendButtonUsed;
+  }*/
 }
