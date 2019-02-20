@@ -38,11 +38,11 @@ public class BackPushUp extends Command {
     
     SmartDashboard.putNumber("BackPushUpTicker", ticker);
 
-    if(Math.floor(Robot.m_navigation.getUpAccel()) != 0 || ticker < SmartDashboard.getNumber("Accel Ticker Threshold", 5)) {
+    if(Math.floor(Robot.m_navigation.getUpAccel()) != 0 || ticker < SmartDashboard.getNumber("Accel Ticker Threshold", 3)) {
 
       ticker += 1;
 
-      if(Robot.m_navigation.getRoll() < -1*SmartDashboard.getNumber("Angle Threshold: ", 13) ){
+      if(Robot.m_navigation.getRoll() < -1*SmartDashboard.getNumber("Angle Threshold: ", 10)){
 
         Robot.m_driveTrain.freezeBack();
 

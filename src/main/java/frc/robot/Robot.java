@@ -76,7 +76,7 @@ public class Robot extends TimedRobot {
     SmartDashboard.putData("Auto mode", m_chooser);
 
 
-    SmartDashboard.putNumber("Angle Threshold: ", 13);
+    SmartDashboard.putNumber("Angle Threshold: ", 10);
     SmartDashboard.putNumber("Accel Ticker Threshold: ", 3);
 
     SmartDashboard.putNumber("Back Extend Delay (ms): ", 250);
