@@ -25,8 +25,7 @@ public class BackFreeze extends Command {
   @Override
   protected void execute() {
     Robot.m_driveTrain.freezeBack();
-    //Robot.m_driveTrain.pushUpBack();
-    //Robot.m_driveTrain.
+
   }
 
   // Make this return true when this Command no longer needs to run execute()
@@ -39,7 +38,6 @@ public class BackFreeze extends Command {
   @Override
   protected void end() {
     
-    Robot.m_driveTrain.pushUpBack();
   }
 
   // Called when another command which requires one or more of the same

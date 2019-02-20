@@ -81,6 +81,8 @@ public class Robot extends TimedRobot {
 
     SmartDashboard.putNumber("Back Extend Delay (ms): ", 250);
 
+    SmartDashboard.putNumber("Flutter Delay (ms): ", 24);
+
   }
 
   /**
@@ -95,6 +97,8 @@ public class Robot extends TimedRobot {
   public void robotPeriodic() {
     //System.out.println("Periodic");
     SmartDashboard.putNumber("Current Pitch Angle: ", Robot.m_navigation.getPitch());
+    SmartDashboard.putNumber("Current 'Angle' Angle: ", Robot.m_navigation.getAngle());
+    SmartDashboard.putNumber("Current Roll Angle: ", Robot.m_navigation.getRoll());
   }
 
   /**
@@ -115,7 +119,7 @@ public class Robot extends TimedRobot {
        .YYYYYYY$$YYiiYY$$$$iiiYYYYYY;.ii;`..
       :YYY$!.  TYiiYY$$$$$YYYYYYYiiYYYYiYYii.
       Y$MM$:   :YYYYYY$!"``"4YYYYYiiiYYYYiiYY.
-    . :MM$$b.,dYY$$Yii" ;'   :YYYYllYiiYYYiYY
+   `. :MM$$b.,dYY$$Yii" ;'   :YYYYllYiiYYYiYY
 _.._ :`4MM$!YYYYYYYYYii,.__.diii$$YYYYYYYYYYY
 .,._ $b`P`     "4$$$$$iiiiiiii$$$$YY$$$$$$YiY;
    `,.`$:       :$$$$$$$$$YYYYY$$$$$$$$$YYiiYYL

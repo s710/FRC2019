@@ -36,14 +36,18 @@ public class FrontPushUp extends Command {
 
     
     SmartDashboard.putNumber("FrontPushUpTicker", ticker);
-    if(Robot.m_navigation.getUpAccel() != 0 || ticker < SmartDashboard.getNumber("Accel Ticker Threshold", 5)) {
 
-      Robot.m_driveTrain.pushUpFront();
+    if(Math.floor(Robot.m_navigation.getUpAccel()) != 0 || ticker < SmartDashboard.getNumber("Accel Ticker Threshold", 5)) {
+
       ticker += 1;
 
-      if(Robot.m_navigation.getPitch() < -1*SmartDashboard.getNumber("Angle Threshold: ", 13)) {
+      if(Robot.m_navigation.getRoll() > SmartDashboard.getNumber("Angle Threshold: ", 13)) {
 
         Robot.m_driveTrain.freezeFront();
+      } else {
+
+        Robot.m_driveTrain.pushUpFront();
+
       }
 
     } else {

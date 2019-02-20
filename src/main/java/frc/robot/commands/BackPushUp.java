@@ -38,18 +38,18 @@ public class BackPushUp extends Command {
     
     SmartDashboard.putNumber("BackPushUpTicker", ticker);
 
-    /*if(AllPushUp.extendButtonUsed()){
-      Timer.delay(SmartDashboard.getNumber("Back Extend Delay (ms): ", 250)/1000);
-    }*/
+    if(Math.floor(Robot.m_navigation.getUpAccel()) != 0 || ticker < SmartDashboard.getNumber("Accel Ticker Threshold", 5)) {
 
-    if(Robot.m_navigation.getUpAccel() != 0 || ticker < SmartDashboard.getNumber("Accel Ticker Threshold", 5)) {
-
-      Robot.m_driveTrain.pushUpBack();
       ticker += 1;
 
-      if(Robot.m_navigation.getPitch() > SmartDashboard.getNumber("Angle Threshold: ", 13) ){
+      if(Robot.m_navigation.getRoll() < -1*SmartDashboard.getNumber("Angle Threshold: ", 13) ){
 
         Robot.m_driveTrain.freezeBack();
+
+      } else {
+
+        Robot.m_driveTrain.pushUpBack();
+        
       }
 
     } else {
@@ -57,6 +57,7 @@ public class BackPushUp extends Command {
     ticker = 0;
     finished = true;
     }   
+
   }
 
   // Make this return true when this Command no longer needs to run execute()

@@ -19,6 +19,7 @@ import edu.wpi.first.wpilibj.SpeedControllerGroup;
 //import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 import com.ctre.phoenix.motorcontrol.can.WPI_VictorSPX;
 //import edu.wpi.first.wpilibj.Encoder;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
  * Add your docs here.
@@ -151,11 +152,26 @@ public class DriveTrain extends Subsystem {
   // }
 
   public void freezeFront() {
-   frontNoid.set(DoubleSolenoid.Value.kOff);
+   frontNoid.set(DoubleSolenoid.Value.kForward);
+   frontNoid.set(DoubleSolenoid.Value.kReverse);
   }
 
   public void freezeBack() {
-   frontNoid.set(DoubleSolenoid.Value.kOff);
+    if(isBackExtended()){
+      System.out.println("Reverse!");
+      backNoid.set(DoubleSolenoid.Value.kReverse);
+      Timer.delay(SmartDashboard.getNumber("Flutter Delay (ms): ",24)/1000);
+      System.out.println("Forward!");
+      backNoid.set(DoubleSolenoid.Value.kForward);
+
+    } else {
+      System.out.println("Forward!");
+      backNoid.set(DoubleSolenoid.Value.kForward);
+      Timer.delay(SmartDashboard.getNumber("Flutter Delay (ms): ",24)/1000);
+      System.out.println("Reverse!");
+      backNoid.set(DoubleSolenoid.Value.kReverse);
+    }
+   
   }
 
 
@@ -205,10 +221,10 @@ public class DriveTrain extends Subsystem {
 
 
   public void changeSpeed() {
-    if(driveSpeed == 0.3){
+    if(driveSpeed == 0.5){
       driveSpeed = 1.0;
     }else{
-      driveSpeed = 0.3;
+      driveSpeed = 0.5;
     }
   }
 
