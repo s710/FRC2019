@@ -99,6 +99,7 @@ public class Robot extends TimedRobot {
     SmartDashboard.putNumber("Current Pitch Angle: ", Robot.m_navigation.getPitch());
     SmartDashboard.putNumber("Current 'Angle' Angle: ", Robot.m_navigation.getAngle());
     SmartDashboard.putNumber("Current Roll Angle: ", Robot.m_navigation.getRoll());
+    SmartDashboard.putNumber("Current Up Accel: ", Robot.m_navigation.getUpAccel());
   }
 
   /**
