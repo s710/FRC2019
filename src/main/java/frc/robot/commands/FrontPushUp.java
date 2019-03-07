@@ -37,7 +37,7 @@ public class FrontPushUp extends Command {
     
     SmartDashboard.putNumber("FrontPushUpTicker", ticker);
 
-    if(Math.floor(Robot.m_navigation.getUpAccel()) != 0 || ticker < SmartDashboard.getNumber("Accel Ticker Threshold", 3)) {
+    if( !(Math.floor(Robot.m_navigation.getUpAccel()) == 0 && ticker > SmartDashboard.getNumber("Accel Ticker Threshold", 3))) {
 
       ticker += 1;
 

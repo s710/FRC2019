@@ -110,28 +110,28 @@ public class Robot extends TimedRobot {
   @Override
   public void disabledInit() {
 /*
-                Y.                      _
-                YiL                   .```.
-                Yii;                .; .;;`.
-                YY;ii._           .;`.;;;; :
-                iiYYYYYYiiiii;;;;i` ;;::;;;;
-            _.;YYYYYYiiiiiiYYYii  .;;.   ;;;
-         .YYYYYYYYYYYiiYYYYYYYYYYYii;`  ;;;;
-       .YYYYYYY$$YYiiYY$$$$iiiYYYYYY;.ii;`..
-      :YYY$!.  TYiiYY$$$$$YYYYYYYiiYYYYiYYii.
-      Y$MM$:   :YYYYYY$!"``"4YYYYYiiiYYYYiiYY.
-   `. :MM$$b.,dYY$$Yii" ;'   :YYYYllYiiYYYiYY
-_.._ :`4MM$!YYYYYYYYYii,.__.diii$$YYYYYYYYYYY
-.,._ $b`P`     "4$$$$$iiiiiiii$$$$YY$$$$$$YiY;
-   `,.`$:       :$$$$$$$$$YYYYY$$$$$$$$$YYiiYYL
-    "`;$$.    .;PPb$`.,.``T$$YYSSSSYYYYYYiiiYYU:
-  ' ;$P$;;: ;;;;i$y$"!Y$$$b;$$$Y$YY$$YYYiiiYYiYY
-    $Fi$$ .. ``:iii.`-";YYYYY$$YY$$$$$YYYiiYiYYY
-    :Y$$rb ````  `_..;;i;YYY$YY$$$$$$$YYYYYYYiYY:
-     :$$$$$i;;iiiiidYYYYYYYYYY$$$$$$YYYYYYYiiYYYY.
-      `$$$$$$$YYYYYYYYYYYYY$$$$$$YYYYYYYYiiiYYYYYY
-      .i!$$$$$$YYYYYYYYY$$$$$$YYY$$YYiiiiiiYYYYYYY
-     :YYiii$$$$$$$YYYYYYY$$$$YY$$$$YYiiiiiYYYYYYi'
+/                Y.                      _
+/                YiL                   .```.
+/                Yii;                .; .;;`.
+/                YY;ii._           .;`.;;;; :
+/                iiYYYYYYiiiii;;;;i` ;;::;;;;
+/            _.;YYYYYYiiiiiiYYYii  .;;.   ;;;
+/         .YYYYYYYYYYYiiYYYYYYYYYYYii;`  ;;;;
+/       .YYYYYYY$$YYiiYY$$$$iiiYYYYYY;.ii;`..
+/      :YYY$!.  TYiiYY$$$$$YYYYYYYiiYYYYiYYii.
+/      Y$MM$:   :YYYYYY$!"``"4YYYYYiiiYYYYiiYY.
+/   `. :MM$$b.,dYY$$Yii" ;'   :YYYYllYiiYYYiYY
+/_.._ :`4MM$!YYYYYYYYYii,.__.diii$$YYYYYYYYYYY
+/.,._ $b`P`     "4$$$$$iiiiiiii$$$$YY$$$$$$YiY;
+/   `,.`$:       :$$$$$$$$$YYYYY$$$$$$$$$YYiiYYL
+/    "`;$$.    .;PPb$`.,.``T$$YYSSSSYYYYYYiiiYYU:
+/  ' ;$P$;;: ;;;;i$y$"!Y$$$b;$$$Y$YY$$YYYiiiYYiYY
+/    $Fi$$ .. ``:iii.`-";YYYYY$$YY$$$$$YYYiiYiYYY
+/    :Y$$rb ````  `_..;;i;YYY$YY$$$$$$$YYYYYYYiYY:
+/     :$$$$$i;;iiiiidYYYYYYYYYY$$$$$$YYYYYYYiiYYYY.
+/      `$$$$$$$YYYYYYYYYYYYY$$$$$$YYYYYYYYiiiYYYYYY
+/      .i!$$$$$$YYYYYYYYY$$$$$$YYY$$YYiiiiiiYYYYYYY
+/     :YYiii$$$$$$$YYYYYYY$$$$YY$$$$YYiiiiiYYYYYYi'
 */
   }
 
@@ -165,9 +165,10 @@ _.._ :`4MM$!YYYYYYYYYii,.__.diii$$YYYYYYYYYYY
     // schedule the autonomous command (example)
     if (m_autonomousCommand != null) {
       m_autonomousCommand.start();
-    }
+    } 
   }
-
+// haha kys brett :)
+// -hunter (jk marc)
   /**
    * This function is called periodically during autonomous.
    */

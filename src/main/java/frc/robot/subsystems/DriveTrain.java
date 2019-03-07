@@ -158,17 +158,17 @@ public class DriveTrain extends Subsystem {
 
   public void freezeBack() {
     if(isBackExtended()){
-      System.out.println("Reverse!");
+      //System.out.println("Reverse!");
       backNoid.set(DoubleSolenoid.Value.kReverse);
       Timer.delay(SmartDashboard.getNumber("Flutter Delay (ms): ",24)/1000);
-      System.out.println("Forward!");
+      //System.out.println("Forward!");
       backNoid.set(DoubleSolenoid.Value.kForward);
 
     } else {
-      System.out.println("Forward!");
+      //System.out.println("Forward!");
       backNoid.set(DoubleSolenoid.Value.kForward);
       Timer.delay(SmartDashboard.getNumber("Flutter Delay (ms): ",24)/1000);
-      System.out.println("Reverse!");
+      //System.out.println("Reverse!");
       backNoid.set(DoubleSolenoid.Value.kReverse);
     }
    
