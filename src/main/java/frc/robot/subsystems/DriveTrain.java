@@ -73,6 +73,8 @@ public class DriveTrain extends Subsystem {
     frontRightMotor.configOpenloopRamp(.5);
     middleRightMotor.configOpenloopRamp(.5);
     backRightMotor.configOpenloopRamp(.5);
+    frontNoid.set(DoubleSolenoid.Value.kReverse);
+    backNoid.set(DoubleSolenoid.Value.kReverse);
   }
 
   // //TIMER STUFF. COMPLICATED. FOURTH DIMENSIONAL MAGIC. MIGHT EXPLODE. CAUTION.
@@ -118,7 +120,7 @@ public class DriveTrain extends Subsystem {
     differentialDriveTrain.arcadeDrive(/*leftSpeed**/driveSpeed*speed, rotation);
   }
   public void driveArcade(Joystick joy) {
-    driveArcade(-joy.getY(), joy.getZ());
+    driveArcade(-joy.getY()*joy.getY()*joy.getY(), joy.getX()*joy.getX()*joy.getX());
   }
 
 //\\ duh duh dudududu duh duh \\//
@@ -128,11 +130,17 @@ public class DriveTrain extends Subsystem {
     //pneumatics pushes robot up to climb
     frontNoid.set(DoubleSolenoid.Value.kForward);
     frontNoidSecondary.set(DoubleSolenoid.Value.kForward);
-    frontExtended = true;
+    //frontExtended = true;
+  }
+  public void setFrontExtended(boolean isExtended){
+    frontExtended = isExtended;
   }
   public void pushUpBack() {
     backNoid.set(DoubleSolenoid.Value.kForward);
-    backExtended = true;
+    //backExtended = true;
+  }
+  public void setBackExtended(boolean isExtended) {
+    backExtended = isExtended;
   }
   public void retractDownFront() {
     //pneumatics retracts robot
@@ -152,8 +160,12 @@ public class DriveTrain extends Subsystem {
   // }
 
   public void freezeFront() {
-   frontNoid.set(DoubleSolenoid.Value.kForward);
+   
    frontNoid.set(DoubleSolenoid.Value.kReverse);
+
+   Timer.delay(SmartDashboard.getNumber("Flutter Delay (ms): ",24)/1000);
+
+   frontNoid.set(DoubleSolenoid.Value.kForward);
   }
 
   public void freezeBack() {

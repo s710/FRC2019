@@ -42,11 +42,15 @@ public class BackPushUp extends Command {
 
       ticker += 1;
 
-      if(Robot.m_navigation.getRoll() < -1*SmartDashboard.getNumber("Angle Threshold: ", 10)){
+      if(Robot.m_navigation.getRoll() < -1*SmartDashboard.getNumber("Angle Threshold: ", 5)){
+
+        System.out.println("Back Freezing");
 
         Robot.m_driveTrain.freezeBack();
 
       } else {
+
+        System.out.println("Back Pushing");
 
         Robot.m_driveTrain.pushUpBack();
         

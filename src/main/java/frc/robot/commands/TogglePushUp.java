@@ -15,6 +15,7 @@ import frc.robot.Robot;
 public class TogglePushUp extends Command {
 
   private boolean finished = false;
+  private int ticker = 0;
 
   public TogglePushUp() {
     // Use requires() here to declare subsystem dependencies
@@ -35,12 +36,55 @@ public class TogglePushUp extends Command {
       Robot.m_driveTrain.retractDownBack();
       Robot.m_driveTrain.retractDownFront();
     } else if(!Robot.m_driveTrain.isBackExtended() && !Robot.m_driveTrain.isFrontExtended()){ //both false
-      Robot.m_driveTrain.pushUpFront();
-      Timer.delay(SmartDashboard.getNumber("Back Extend Delay (ms): ", 250)/1000);
-      Robot.m_driveTrain.pushUpBack();
-      // new AllPushUp();
+      // Robot.m_driveTrain.pushUpFront();
+      // Timer.delay(SmartDashboard.getNumber("Back Extend Delay (ms): ", 250)/1000);
+      // Robot.m_driveTrain.pushUpBack();
+
+      // if( !(Math.floor(Robot.m_navigation.getUpAccel()) == 0 && ticker > SmartDashboard.getNumber("Accel Ticker Threshold", 50))) {
+
+      //  // ticker += 1;
+  
+      //   if(Robot.m_navigation.getRoll() < -1*SmartDashboard.getNumber("Angle Threshold: ", 5)){
+  
+      //     System.out.println("Back Freezing");
+        
+      //     Robot.m_driveTrain.freezeBack();
+  
+      //   } else {
+  
+      //     System.out.println("Back Pushing");
+  
+      //     Robot.m_driveTrain.pushUpBack();
+          
+      //   }
+      // } else {
+      //   //ticker = 0;
+      //   Robot.m_driveTrain.setBackExtended(true);
+      // }
+
+      if( (Math.floor(Robot.m_navigation.getUpAccel()) != 0 || ticker < SmartDashboard.getNumber("Accel Ticker Threshold", 50))) {
+
+        ticker += 1;
+  
+        if(Robot.m_navigation.getRoll() > SmartDashboard.getNumber("Angle Threshold: ", 5)) {
+          Robot.m_driveTrain.freezeFront();
+          Robot.m_driveTrain.pushUpBack();
+        } else if(Robot.m_navigation.getRoll() < -1*SmartDashboard.getNumber("Angle Threshold: ", 5)){
+          Robot.m_driveTrain.freezeBack();
+          Robot.m_driveTrain.pushUpFront();
+        }else{
+  
+          Robot.m_driveTrain.pushUpFront();
+          Robot.m_driveTrain.pushUpBack();
+        }
+  
+      } else {
+        ticker = 0;
+        Robot.m_driveTrain.setFrontExtended(true);
+        Robot.m_driveTrain.setBackExtended(true);
+        finished = true;
+      }  
     }
-    finished = true;
   }
 
   // Make this return true when this Command no longer needs to run execute()
