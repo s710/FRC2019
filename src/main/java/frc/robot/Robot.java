@@ -56,6 +56,7 @@ public class Robot extends TimedRobot {
     System.out.println("Initializing");
     m_oi = new OI();
     m_navigation = new Navigation();
+    m_navigation.resetGyro();
 
     CameraServer.getInstance().startAutomaticCapture("USB 0", 0 );
     CameraServer.getInstance().startAutomaticCapture("USB 1", 1 );

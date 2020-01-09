@@ -10,11 +10,9 @@ package frc.robot.commands;
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
 
-public class TogglePushUpBack extends Command {
-
-  private boolean finished = false;
-
-  public TogglePushUpBack() {
+public class SpeedIsFast extends Command {
+  boolean finished = false;
+  public SpeedIsFast() {
     // Use requires() here to declare subsystem dependencies
     // eg. requires(chassis);
   }
@@ -27,13 +25,8 @@ public class TogglePushUpBack extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    if (Robot.m_driveTrain.isBackExtended()){ 
-      Robot.m_driveTrain.retractDownBack();
-      Robot.m_driveTrain.setBackExtended(false);
-    } else if(!Robot.m_driveTrain.isBackExtended()){ 
-      Robot.m_driveTrain.pushUpBack();
-      Robot.m_driveTrain.setBackExtended(true);
-    }
+    Robot.m_driveTrain.fastSpeed(true);
+    System.out.println("Speed is fast (theoretically)");
     finished = true;
   }
 
@@ -46,6 +39,10 @@ public class TogglePushUpBack extends Command {
   // Called once after isFinished returns true
   @Override
   protected void end() {
+    if (!Robot.m_oi.lb.get()){
+      Robot.m_driveTrain.fastSpeed(false);
+      System.out.println("Speed is set slow (theoretically)");
+    }
   }
 
   // Called when another command which requires one or more of the same

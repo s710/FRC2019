@@ -29,8 +29,10 @@ public class TogglePushUpForward extends Command {
   protected void execute() {
     if (Robot.m_driveTrain.isFrontExtended()){ 
       Robot.m_driveTrain.retractDownFront();
+      Robot.m_driveTrain.setFrontExtended(false);
     } else if(!Robot.m_driveTrain.isFrontExtended()){ 
       Robot.m_driveTrain.pushUpFront();
+      Robot.m_driveTrain.setFrontExtended(true);
     }
     finished = true;
   }
@@ -44,6 +46,7 @@ public class TogglePushUpForward extends Command {
   // Called once after isFinished returns true
   @Override
   protected void end() {
+    
   }
 
   // Called when another command which requires one or more of the same

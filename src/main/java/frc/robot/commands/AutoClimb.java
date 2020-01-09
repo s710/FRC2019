@@ -7,14 +7,14 @@
 
 package frc.robot.commands;
 
+import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
 
-public class TogglePushUpBack extends Command {
+public class AutoClimb extends Command {
 
   private boolean finished = false;
-
-  public TogglePushUpBack() {
+  public AutoClimb() {
     // Use requires() here to declare subsystem dependencies
     // eg. requires(chassis);
   }
@@ -27,13 +27,16 @@ public class TogglePushUpBack extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    if (Robot.m_driveTrain.isBackExtended()){ 
-      Robot.m_driveTrain.retractDownBack();
-      Robot.m_driveTrain.setBackExtended(false);
-    } else if(!Robot.m_driveTrain.isBackExtended()){ 
-      Robot.m_driveTrain.pushUpBack();
-      Robot.m_driveTrain.setBackExtended(true);
-    }
+    Robot.m_driveTrain.driveArcade(0.15, 0);
+    Robot.m_driveTrain.pushUpBack();
+    Timer.delay(100/1000);
+    Robot.m_driveTrain.pushUpFront();
+    Timer.delay(100/1000);
+    Robot.m_driveTrain.retractDownFront();
+    Timer.delay(100/1000);
+    Robot.m_driveTrain.retractDownBack();
+    Timer.delay(100/1000);
+    Robot.m_driveTrain.driveArcade(0,0);
     finished = true;
   }
 

@@ -35,6 +35,8 @@ public class TogglePushUp extends Command {
     } else if (Robot.m_driveTrain.isBackExtended() && Robot.m_driveTrain.isFrontExtended()){ // both true
       Robot.m_driveTrain.retractDownBack();
       Robot.m_driveTrain.retractDownFront();
+      Robot.m_driveTrain.setBackExtended(false);
+      Robot.m_driveTrain.setFrontExtended(false);
     } else if(!Robot.m_driveTrain.isBackExtended() && !Robot.m_driveTrain.isFrontExtended()){ //both false
       // Robot.m_driveTrain.pushUpFront();
       // Timer.delay(SmartDashboard.getNumber("Back Extend Delay (ms): ", 250)/1000);
@@ -62,28 +64,129 @@ public class TogglePushUp extends Command {
       //   Robot.m_driveTrain.setBackExtended(true);
       // }
 
-      if( (Math.floor(Robot.m_navigation.getUpAccel()) != 0 || ticker < SmartDashboard.getNumber("Accel Ticker Threshold", 50))) {
+      // if ( (Math.floor(Robot.m_navigation.getUpAccel())) == 0 ){
+      //   ticker += 1;
 
+      // } else {
+
+      //   ticker = 0;
+
+      // }
+      System.out.println("Roll: " + Robot.m_navigation.getRoll());
+      System.out.println("Acceleration: " + Robot.m_navigation.getUpAccel());
+      System.out.println("Front State, extended? " + Robot.m_driveTrain.isFrontExtended());
+      System.out.println("Back State, extended? " + Robot.m_driveTrain.isBackExtended());
+      System.out.println("Ticker: " + ticker);
+      
+
+
+
+      while(ticker < SmartDashboard.getNumber("Accel Ticker Threshold", 50)){
         ticker += 1;
-  
-        if(Robot.m_navigation.getRoll() > SmartDashboard.getNumber("Angle Threshold: ", 5)) {
+        if(Robot.m_navigation.getRoll() > 5.0/*SmartDashboard.getNumber("Angle Threshold: ", 5)*/) {
           Robot.m_driveTrain.freezeFront();
-          Robot.m_driveTrain.pushUpBack();
-        } else if(Robot.m_navigation.getRoll() < -1*SmartDashboard.getNumber("Angle Threshold: ", 5)){
-          Robot.m_driveTrain.freezeBack();
+          //Robot.m_driveTrain.retractDownFront();
+          Timer.delay((SmartDashboard.getNumber("Flutter Delay (ms)", 24)/1000));
           Robot.m_driveTrain.pushUpFront();
+          Robot.m_driveTrain.pushUpBack();
+
+          System.out.println("Freezing front");
+          //System.out.println(Robot.m_navigation.getRoll());
+
+        } else if(Robot.m_navigation.getRoll() < -5.0/*1*SmartDashboard.getNumber("Angle Threshold: ", 5)*/){
+          Robot.m_driveTrain.freezeBack();
+          //Robot.m_driveTrain.retractDownBack();
+          Timer.delay((SmartDashboard.getNumber("Flutter Delay (ms)", 24)/1000));
+          Robot.m_driveTrain.pushUpBack();
+          Robot.m_driveTrain.pushUpFront();
+
+          System.out.println("Freezing back");
+          //System.out.println(Robot.m_navigation.getRoll());
+
         }else{
   
+          // Robot.m_driveTrain.pushUpFront();
+          Robot.m_driveTrain.pushUpBack();
+          Timer.delay(SmartDashboard.getNumber("Back Extend Delay (ms): ", 250)/1000);
+          // Robot.m_driveTrain.pushUpBack();
+          Robot.m_driveTrain.pushUpFront();
+
+          System.out.println("Pushing up both");
+          //System.out.println("Roll: " + Robot.m_navigation.getRoll());
+        }
+        // System.out.println("Roll: " + Robot.m_navigation.getRoll());
+        // System.out.println("Acceleration: " + Robot.m_navigation.getUpAccel());
+        // System.out.println("Front State, extended? " + Robot.m_driveTrain.isFrontExtended());
+        // System.out.println("Back State, extended? " + Robot.m_driveTrain.isBackExtended());
+        // System.out.println("Ticker: " + ticker);
+      }
+      System.out.println("Ticker count reached");
+      ticker = 0;
+      Robot.m_driveTrain.setFrontExtended(true);
+      Robot.m_driveTrain.setBackExtended(true);
+      finished = true;
+  
+      
+
+
+
+
+/**
+      if( ticker < SmartDashboard.getNumber("Accel Ticker Threshold", 50)) {
+        ticker += 1;
+        if(Robot.m_navigation.getRoll() > 5.0/*SmartDashboard.getNumber("Angle Threshold: ", 5)* /) {
+          Robot.m_driveTrain.freezeFront();
+          //Robot.m_driveTrain.retractDownFront();
+          Timer.delay((SmartDashboard.getNumber("Flutter Delay (ms)", 24)/1000));
           Robot.m_driveTrain.pushUpFront();
           Robot.m_driveTrain.pushUpBack();
+
+          System.out.println("Freezing front");
+          //System.out.println(Robot.m_navigation.getRoll());
+
+        } else if(Robot.m_navigation.getRoll() < -5.0/*1*SmartDashboard.getNumber("Angle Threshold: ", 5)* /){
+          Robot.m_driveTrain.freezeBack();
+          //Robot.m_driveTrain.retractDownBack();
+          Timer.delay((SmartDashboard.getNumber("Flutter Delay (ms)", 24)/1000));
+          Robot.m_driveTrain.pushUpBack();
+          Robot.m_driveTrain.pushUpFront();
+
+          System.out.println("Freezing back");
+          //System.out.println(Robot.m_navigation.getRoll());
+
+        }else{
+  
+          // Robot.m_driveTrain.pushUpFront();
+          Robot.m_driveTrain.pushUpBack();
+          Timer.delay(SmartDashboard.getNumber("Back Extend Delay (ms): ", 250)/1000);
+          // Robot.m_driveTrain.pushUpBack();
+          Robot.m_driveTrain.pushUpFront();
+
+          System.out.println("Pushing up both");
+          //System.out.println("Roll: " + Robot.m_navigation.getRoll());
         }
+        // System.out.println("Roll: " + Robot.m_navigation.getRoll());
+        // System.out.println("Acceleration: " + Robot.m_navigation.getUpAccel());
+        // System.out.println("Front State, extended? " + Robot.m_driveTrain.isFrontExtended());
+        // System.out.println("Back State, extended? " + Robot.m_driveTrain.isBackExtended());
+        // System.out.println("Ticker: " + ticker);
+
   
       } else {
+        System.out.println("Ticker count reached");
         ticker = 0;
         Robot.m_driveTrain.setFrontExtended(true);
         Robot.m_driveTrain.setBackExtended(true);
         finished = true;
       }  
+*/
+
+
+
+
+
+
+      
     }
   }
 

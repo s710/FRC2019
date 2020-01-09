@@ -15,6 +15,8 @@ import frc.robot.commands.DriveWithJoysticks;
 import edu.wpi.first.wpilibj.*;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import edu.wpi.first.wpilibj.SpeedControllerGroup;
+
+import com.ctre.phoenix.motorcontrol.NeutralMode;
 //import edu.wpi.first.wpilibj.Timer;
 //import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 import com.ctre.phoenix.motorcontrol.can.WPI_VictorSPX;
@@ -75,6 +77,14 @@ public class DriveTrain extends Subsystem {
     backRightMotor.configOpenloopRamp(.5);
     frontNoid.set(DoubleSolenoid.Value.kReverse);
     backNoid.set(DoubleSolenoid.Value.kReverse);
+    //frontRightMotor.setNeutralMode(NeutralMode.Brake);
+    // frontRightMotor.setNeutralMode(NeutralMode.Coast);
+    // middleRightMotor.setNeutralMode(NeutralMode.Coast);
+    // backRightMotor.setNeutralMode(NeutralMode.Coast);
+    // frontLeftMotor.setNeutralMode(NeutralMode.Coast);
+    // middleLeftMotor.setNeutralMode(NeutralMode.Coast);
+    // backLeftMotor.setNeutralMode(NeutralMode.Coast);
+    // extendedMotor.setNeutralMode(NeutralMode.Coast);
   }
 
   // //TIMER STUFF. COMPLICATED. FOURTH DIMENSIONAL MAGIC. MIGHT EXPLODE. CAUTION.
@@ -117,10 +127,10 @@ public class DriveTrain extends Subsystem {
 
 
   public void driveArcade(double speed, double rotation) {
-    differentialDriveTrain.arcadeDrive(/*leftSpeed**/driveSpeed*speed, rotation);
+    differentialDriveTrain.arcadeDrive(/*leftSpeed**/driveSpeed*speed, driveSpeed*rotation);
   }
   public void driveArcade(Joystick joy) {
-    driveArcade(-joy.getY()*joy.getY()*joy.getY(), joy.getX()*joy.getX()*joy.getX());
+    driveArcade(-joy.getY()*1.0, joy.getX()*0.75);
   }
 
 //\\ duh duh dudududu duh duh \\//
@@ -133,24 +143,58 @@ public class DriveTrain extends Subsystem {
     //frontExtended = true;
   }
   public void setFrontExtended(boolean isExtended){
+    // if(isExtended){
+    //   frontRightMotor.setNeutralMode(NeutralMode.Brake);
+    //   middleRightMotor.setNeutralMode(NeutralMode.Brake);
+    //   backRightMotor.setNeutralMode(NeutralMode.Brake);
+    //   frontLeftMotor.setNeutralMode(NeutralMode.Brake);
+    //   middleLeftMotor.setNeutralMode(NeutralMode.Brake);
+    //   backLeftMotor.setNeutralMode(NeutralMode.Brake);
+    //   extendedMotor.setNeutralMode(NeutralMode.Brake);
+    // } else {
+    //   // frontRightMotor.setNeutralMode(NeutralMode.Coast);
+    //   // middleRightMotor.setNeutralMode(NeutralMode.Coast);
+    //   // backRightMotor.setNeutralMode(NeutralMode.Coast);
+    //   // frontLeftMotor.setNeutralMode(NeutralMode.Coast);
+    //   // middleLeftMotor.setNeutralMode(NeutralMode.Coast);
+    //   // backLeftMotor.setNeutralMode(NeutralMode.Coast);
+    //   // extendedMotor.setNeutralMode(NeutralMode.Coast);
+    // }
     frontExtended = isExtended;
   }
   public void pushUpBack() {
-    backNoid.set(DoubleSolenoid.Value.kForward);
+    backNoid.set(DoubleSolenoid.Value.kForward)wd;
     //backExtended = true;
   }
   public void setBackExtended(boolean isExtended) {
+    // if(isExtended){
+    //   frontRightMotor.setNeutralMode(NeutralMode.Brake);
+    //   middleRightMotor.setNeutralMode(NeutralMode.Brake);
+    //   backRightMotor.setNeutralMode(NeutralMode.Brake);
+    //   frontLeftMotor.setNeutralMode(NeutralMode.Brake);
+    //   middleLeftMotor.setNeutralMode(NeutralMode.Brake);
+    //   backLeftMotor.setNeutralMode(NeutralMode.Brake);
+    //   extendedMotor.setNeutralMode(NeutralMode.Brake);
+    // } else {
+    //   // frontRightMotor.setNeutralMode(NeutralMode.Coast);
+    //   // middleRightMotor.setNeutralMode(NeutralMode.Coast);
+    //   // backRightMotor.setNeutralMode(NeutralMode.Coast);
+    //   // frontLeftMotor.setNeutralMode(NeutralMode.Coast);
+    //   // middleLeftMotor.setNeutralMode(NeutralMode.Coast);
+    //   // backLeftMotor.setNeutralMode(NeutralMode.Coast);
+    //   // extendedMotor.setNeutralMode(NeutralMode.Coast);
+    // }
     backExtended = isExtended;
   }
   public void retractDownFront() {
     //pneumatics retracts robot
     frontNoid.set(DoubleSolenoid.Value.kReverse);
     frontNoidSecondary.set(DoubleSolenoid.Value.kReverse);
-    frontExtended = false;
+    //frontExtended = false;
   }
   public void retractDownBack() {
     backNoid.set(DoubleSolenoid.Value.kReverse);
-    backExtended = false;
+    //backExtended = false;
   }
   // public void extendState() {
   //   extended = true;
@@ -161,28 +205,30 @@ public class DriveTrain extends Subsystem {
 
   public void freezeFront() {
    
-   frontNoid.set(DoubleSolenoid.Value.kReverse);
+  //  frontNoid.set(DoubleSolenoid.Value.kReverse);
 
-   Timer.delay(SmartDashboard.getNumber("Flutter Delay (ms): ",24)/1000);
+  //  Timer.delay(SmartDashboard.getNumber("Flutter Delay (ms): ",24)/1000);
 
-   frontNoid.set(DoubleSolenoid.Value.kForward);
+   frontNoid.set(DoubleSolenoid.Value.kOff);
   }
 
   public void freezeBack() {
-    if(isBackExtended()){
-      //System.out.println("Reverse!");
-      backNoid.set(DoubleSolenoid.Value.kReverse);
-      Timer.delay(SmartDashboard.getNumber("Flutter Delay (ms): ",24)/1000);
-      //System.out.println("Forward!");
-      backNoid.set(DoubleSolenoid.Value.kForward);
+    // if(isBackExtended()){
+    //   //System.out.println("Reverse!");
+    //   // backNoid.set(DoubleSolenoid.Value.kReverse);
+    //   // Timer.delay(SmartDashboard.getNumber("Flutter Delay (ms): ",24)/1000);
+    //   //System.out.println("Forward!");
+    //   backNoid.set(DoubleSolenoid.Value.kOff);
 
-    } else {
-      //System.out.println("Forward!");
-      backNoid.set(DoubleSolenoid.Value.kForward);
-      Timer.delay(SmartDashboard.getNumber("Flutter Delay (ms): ",24)/1000);
-      //System.out.println("Reverse!");
-      backNoid.set(DoubleSolenoid.Value.kReverse);
-    }
+    // } else {
+    //   //System.out.println("Forward!");
+    //   backNoid.set(DoubleSolenoid.Value.kForward);
+    //   Timer.delay(SmartDashboard.getNumber("Flutter Delay (ms): ",24)/1000);
+    //   //System.out.println("Reverse!");
+    //   backNoid.set(DoubleSolenoid.Value.kReverse);
+    // }
+    backNoid.set(DoubleSolenoid.Value.kOff);
+
    
   }
 
@@ -233,10 +279,18 @@ public class DriveTrain extends Subsystem {
 
 
   public void changeSpeed() {
-    if(driveSpeed == 0.5){
+    // if(driveSpeed == 0.5){
+    //   driveSpeed = 1.0;
+    // }else{
+    //   driveSpeed = 0.5;
+    // }
+  }
+
+  public void fastSpeed(boolean fast){
+    if (fast == true){
       driveSpeed = 1.0;
-    }else{
-      driveSpeed = 0.5;
+    } else {
+      driveSpeed = 0.89;
     }
   }
 

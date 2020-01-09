@@ -10,11 +10,9 @@ package frc.robot.commands;
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
 
-public class TogglePushUpBack extends Command {
-
+public class ALLDOWN extends Command {
   private boolean finished = false;
-
-  public TogglePushUpBack() {
+  public ALLDOWN() {
     // Use requires() here to declare subsystem dependencies
     // eg. requires(chassis);
   }
@@ -27,13 +25,8 @@ public class TogglePushUpBack extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    if (Robot.m_driveTrain.isBackExtended()){ 
-      Robot.m_driveTrain.retractDownBack();
-      Robot.m_driveTrain.setBackExtended(false);
-    } else if(!Robot.m_driveTrain.isBackExtended()){ 
-      Robot.m_driveTrain.pushUpBack();
-      Robot.m_driveTrain.setBackExtended(true);
-    }
+    Robot.m_driveTrain.retractDownBack();
+    Robot.m_driveTrain.retractDownFront();
     finished = true;
   }
 

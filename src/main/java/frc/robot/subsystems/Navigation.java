@@ -40,6 +40,9 @@ public class Navigation extends Subsystem {
     //Probably never gonna use
   }
 
+  public void resetGyro() {
+    ahrs.reset();
+  }
   public double getAngle(){
     return ahrs.getAngle();
   }
